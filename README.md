@@ -46,6 +46,8 @@ Mixed reality, which includes both virtual and augmented, is an area in tech mak
 - Read through documentation 
 - Created Hello World application for android
 
+![Alt Text](https://media.giphy.com/media/39yDlAJDTmnJolROYc/giphy.gif)
+
 > Sources
 > - https://developers.google.com/ar/discover/
 > - https://developers.google.com/ar/develop/developer-guides
