@@ -10,7 +10,8 @@ Mixed reality, which includes both virtual and augmented, is an area in tech mak
 |Week|   |
 |--|--|
 | 1-3 | Research into areas of technology suitable for the project. Focusing on AR. Exploring the state of the field in AR. Comparing different libraries available. 
-4 | Create a hello world application using google's ARCore Library
+4 | Create a hello world application using google's ARCore Library. 
+5 | Investigate and implement geolocation based AR
 
 ## Weeks 1-3
 
@@ -51,4 +52,6 @@ Mixed reality, which includes both virtual and augmented, is an area in tech mak
 > Sources
 > - https://developers.google.com/ar/discover/
 > - https://developers.google.com/ar/develop/developer-guides
+
+
 
