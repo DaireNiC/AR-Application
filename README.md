@@ -24,15 +24,15 @@ BirdAR is a mobile application that uses augmented reality to help bird conserva
  - Allows users to add a marker in the given location if a new nest is discovered
  - Store information on the nest, e.g egg count, reported incidents
 
-IMAGE
+![Alt Text](https://github.com/DaireNiC/AR-Application/blob/master/media/app_mockup.jpg)
 
 
 ## Use Case
 ### Kilcoole Little Tern Conservation Project
-A colony of Little Terns, one of Ireland’s rarest breeding seabirds, nests on the shingle beach between Kilcoole and Newcastle, Co Wicklow. A section of the beach, consisting of roughly 500 meters is fenced off from the public, reserving it exclusively for the Little Terns during the summer months. Wardens monitor the beach, counting and marking nests, ringing chicks and keeping track of egg numbers
+A colony of Little Terns, one of Ireland’s rarest breeding seabirds, nests on the shingle beach between Kilcoole and Newcastle, Co Wicklow. A section of the beach, consisting of roughly 500 meters is fenced off from the public, reserving it exclusively for the Little Terns during the summer months. Wardens monitor the beach, counting and marking nests, ringing chicks and keeping track of egg numbers.
 
-
-
+![Alt Text](https://github.com/DaireNiC/AR-Application/blob/master/media/beach_kilcoole.JPG)
+> Kilcoole Beach
 
 #  Project Development  
 Mixed reality, which includes both virtual and augmented, is an area in tech making significant progress in recent years. The goal of this project is to explore the state of the field in augmented reality. 
