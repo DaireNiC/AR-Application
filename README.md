@@ -1,8 +1,40 @@
-# Augmented Reality Application
 
-This repo is a compilation of the research and progress for my final year software development project. 
+## About 
 
-# Exploration 
+This repo is a compilation of the research and progress of my final year software development project. 
+
+
+# BirdAR
+Nest visibility is one of the primary difficulties encountered in bird conservation projects. Locating and monitoring the nests of birds in beach colonies in particular, is a delicate task. 
+
+**Why?**
+- Seabirds birds use very little material in their nests, making them indistinguishable from the rocky shoreline
+- Physical Markers cannot be placed near nests as this can disturb the birds
+
+ **The result**
+ - Nests are extremely difficult to locate and monitor
+ - Nests can be destroyed by workers accidentally stepping on them
+ - Chicks/eggs can also get stepped on
+ 
+## The Solution 
+BirdAR is a mobile application that uses augmented reality to help bird conservationists in their field of work.
+
+**Features** 
+ - Uses AR to display markers of where bird nests are located. 
+ - Allows users to add a marker in the given location if a new nest is discovered
+ - Store information on the nest, e.g egg count, reported incidents
+
+IMAGE
+
+
+## Use Case
+### Kilcoole Little Tern Conservation Project
+A colony of Little Terns, one of Ireland’s rarest breeding seabirds, nests on the shingle beach between Kilcoole and Newcastle, Co Wicklow. A section of the beach, consisting of roughly 500 meters is fenced off from the public, reserving it exclusively for the Little Terns during the summer months. Wardens monitor the beach, counting and marking nests, ringing chicks and keeping track of egg numbers
+
+
+
+
+#  Project Development  
 Mixed reality, which includes both virtual and augmented, is an area in tech making significant progress in recent years. The goal of this project is to explore the state of the field in augmented reality. 
 
 ## Progress 
@@ -11,7 +43,7 @@ Mixed reality, which includes both virtual and augmented, is an area in tech mak
 |--|--|
 | 1-3 | Research into areas of technology suitable for the project. Focusing on AR. Exploring the state of the field in AR. Comparing different libraries available. 
 4 | Create a hello world application using google's ARCore Library. 
-5 | Investigate and implement geolocation based AR
+5 | Investigate geolocation based AR. 
 
 ## Weeks 1-3
 
