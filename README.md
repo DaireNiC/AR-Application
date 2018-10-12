@@ -44,6 +44,10 @@ A colony of Little Terns, one of Ireland’s rarest breeding seabirds, nests on 
 - Note how the nest marker must be placed a small distance away from the actual nest.
 - This further increases the difficulty in locating it.
 
+> Sources :
+> - Images: http://littleternconservation.blogspot.com/
+
+
 #  Project Development  
 Mixed reality, which includes both virtual and augmented, is an area in tech making significant progress in recent years. The goal of this project is to explore the state of the field in augmented reality. 
 
