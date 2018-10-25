@@ -1,5 +1,6 @@
 
 
+
 ## About 
 
 This repo is a compilation of the research and progress of my final year software development project. 
@@ -8,13 +9,14 @@ This repo is a compilation of the research and progress of my final year softwar
 #  Project Development  
 Mixed reality, which includes both virtual and augmented, is an area in tech making significant progress in recent years. The goal of this project is to explore the state of the field in augmented reality. 
 
-## Progress 
+## Progress a
 
 |Week|   |
 |--|--|
 | 1-3 | Research into areas of technology suitable for the project. Focusing on AR. Exploring the state of the field in AR. Comparing different libraries available. 
 4 | Create a hello world application using google's ARCore Library. 
 5 | Investigate geolocation based AR. 
+6-7 | Investigating Shared AR
 
 ## Weeks 1-3
 
@@ -56,5 +58,25 @@ Mixed reality, which includes both virtual and augmented, is an area in tech mak
 > - https://developers.google.com/ar/discover/
 > - https://developers.google.com/ar/develop/developer-guides
 
+### Week 5
+- Researched Geolocation and AR applications
+- Researched Geolocation accuracy 
+- Found that the current state of gps on mobile devices was not accurate enough for application's need
+	- Would need to use bluetooth beacons/ Dedicated GPS device/ additional HW
+ 
+> Sources
+>   - https://www.gps.gov/systems/gps/performance/accuracy/
+> - https://www.andygup.net/how-accurate-is-android-gps-part-1-understanding-location-data/
+> - https://developer.android.com/guide/topics/location/strategies
+>  - https://www.gps.gov/systems/gps/performance/accuracy/
+>  http://www.wetlandsurveysireland.com/news/how-to-achieve-sub-metre.html
+
+### Week 6-7
+- Researching Shared Augmented Reality
+- Investigated ARCore Cloud Anchors to achieve this
+- Working on creating basic AR using Cloud Anchors
 
 
+> Sources
+>   - https://developers.google.com/ar/develop/java/cloud-anchors/overview-android
+> - https://developers.google.com/ar/develop/unity/cloud-anchors/quickstart-unity-android
