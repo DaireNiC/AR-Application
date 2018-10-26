@@ -75,6 +75,11 @@ Mixed reality, which includes both virtual and augmented, is an area in tech mak
 - Researching Shared Augmented Reality
 - Investigated ARCore Cloud Anchors to achieve this
 - Working on creating basic AR using Cloud Anchors
+- Set up Unity for development 
+- Set up Android Studio and ARCore Dependencies 
+- Set up Firebase for ARCore Cloud Anchors
+- Got Google Cloud Anchors API key
+- Created basic android app with shared AR
 
 
 > Sources
