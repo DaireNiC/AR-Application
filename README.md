@@ -9,7 +9,7 @@ This repo is a compilation of the research and progress of my final year softwar
 #  Project Development  
 Mixed reality, which includes both virtual and augmented, is an area in tech making significant progress in recent years. The goal of this project is to explore the state of the field in augmented reality. 
 
-## Progress a
+## Progress 
 
 |Week|   |
 |--|--|
@@ -47,6 +47,20 @@ Mixed reality, which includes both virtual and augmented, is an area in tech mak
 > - https://www.vrfocus.com/2018/01/the-state-of-immersive-reality-in-2018/
 > - https://uploadvr.com/best-of-ces-2018-5-big-updates/ - https://www.vrfocus.com/2018/05/recap-of-everything-ar-and-vr-at-google-io/
 
+## ARCore
+### How it works
+#### Motion Tracking
+- ARCore uses a process called concurrent odometry and mapping, or COM, to understand where the phone is relative to the world around it.
+-  ARCore detects visually distinct features in the captured camera image called **feature points** and uses these points to compute its change in location. 
+- The visual information is combined with inertial measurements from the device's IMU to estimate the **pose** (position and orientation) of the camera relative to the world over time.
+
+#### Environmental understanding
+- ARCore is constantly improves its understanding of the real world environment by detecting feature points and planes.
+- It looks for clusters of feature points that appear to lie on common horizontal or vertical surfaces, like tables or walls, and makes these surfaces available to your app as  **planes**.
+-  ARCore can also determine each plane's boundary and make that information available to your app. You can use this information to place virtual objects resting on flat surfaces.
+- Because ARCore uses feature points to detect planes, flat surfaces without texture, such as a white wall, may not be detected properly. 
+
+- 
 ### Week 4
 - Researched ARCore Library 
 - Read through documentation 
@@ -80,8 +94,11 @@ Mixed reality, which includes both virtual and augmented, is an area in tech mak
 - Set up Firebase for ARCore Cloud Anchors
 - Got Google Cloud Anchors API key
 - Created basic android app with shared AR
+#### Cloud Anchor Host
+![Alt Text](https://github.com/DaireNiC/AR-Application/blob/master/media/cloud_anchor_host.jpg)
 
-
+#### Cloud Anchor Resolved 
+![Alt Text](https://github.com/DaireNiC/AR-Application/blob/master/media/cloud_anchor_client.jpg)
 > Sources
 >   - https://developers.google.com/ar/develop/java/cloud-anchors/overview-android
 > - https://developers.google.com/ar/develop/unity/cloud-anchors/quickstart-unity-android
