@@ -1,37 +1,10 @@
 
+
+
+
 ## About 
 
 This repo is a compilation of the research and progress of my final year software development project. 
-
-
-# BirdAR
-Nest visibility is one of the primary difficulties encountered in bird conservation projects. Locating and monitoring the nests of birds in beach colonies in particular, is a delicate task. 
-
-**Why?**
-- Seabirds birds use very little material in their nests, making them indistinguishable from the rocky shoreline
-- Physical Markers cannot be placed near nests as this can disturb the birds
-
- **The result**
- - Nests are extremely difficult to locate and monitor
- - Nests can be destroyed by workers accidentally stepping on them
- - Chicks/eggs can also get stepped on
- 
-## The Solution 
-BirdAR is a mobile application that uses augmented reality to help bird conservationists in their field of work.
-
-**Features** 
- - Uses AR to display markers of where bird nests are located. 
- - Allows users to add a marker in the given location if a new nest is discovered
- - Store information on the nest, e.g egg count, reported incidents
-
-IMAGE
-
-
-## Use Case
-### Kilcoole Little Tern Conservation Project
-A colony of Little Terns, one of Ireland’s rarest breeding seabirds, nests on the shingle beach between Kilcoole and Newcastle, Co Wicklow. A section of the beach, consisting of roughly 500 meters is fenced off from the public, reserving it exclusively for the Little Terns during the summer months. Wardens monitor the beach, counting and marking nests, ringing chicks and keeping track of egg numbers
-
-
 
 
 #  Project Development  
@@ -44,6 +17,7 @@ Mixed reality, which includes both virtual and augmented, is an area in tech mak
 | 1-3 | Research into areas of technology suitable for the project. Focusing on AR. Exploring the state of the field in AR. Comparing different libraries available. 
 4 | Create a hello world application using google's ARCore Library. 
 5 | Investigate geolocation based AR. 
+6-7 | Investigating Shared AR
 
 ## Weeks 1-3
 
@@ -74,6 +48,20 @@ Mixed reality, which includes both virtual and augmented, is an area in tech mak
 > - https://www.vrfocus.com/2018/01/the-state-of-immersive-reality-in-2018/
 > - https://uploadvr.com/best-of-ces-2018-5-big-updates/ - https://www.vrfocus.com/2018/05/recap-of-everything-ar-and-vr-at-google-io/
 
+## ARCore
+### How it works
+#### Motion Tracking
+- ARCore uses a process called concurrent odometry and mapping, or COM, to understand where the phone is relative to the world around it.
+-  ARCore detects visually distinct features in the captured camera image called **feature points** and uses these points to compute its change in location. 
+- The visual information is combined with inertial measurements from the device's IMU to estimate the **pose** (position and orientation) of the camera relative to the world over time.
+
+#### Environmental understanding
+- ARCore is constantly improves its understanding of the real world environment by detecting feature points and planes.
+- It looks for clusters of feature points that appear to lie on common horizontal or vertical surfaces, like tables or walls, and makes these surfaces available to your app as  **planes**.
+-  ARCore can also determine each plane's boundary and make that information available to your app. You can use this information to place virtual objects resting on flat surfaces.
+- Because ARCore uses feature points to detect planes, flat surfaces without texture, such as a white wall, may not be detected properly. 
+
+- 
 ### Week 4
 - Researched ARCore Library 
 - Read through documentation 
@@ -85,5 +73,41 @@ Mixed reality, which includes both virtual and augmented, is an area in tech mak
 > - https://developers.google.com/ar/discover/
 > - https://developers.google.com/ar/develop/developer-guides
 
+### Week 5
+- Researched Geolocation and AR applications
+- Researched Geolocation accuracy 
+- Found that the current state of gps on mobile devices was not accurate enough for application's need
+	- Would need to use bluetooth beacons/ Dedicated GPS device/ additional HW
+ 
+> Sources
+>   - https://www.gps.gov/systems/gps/performance/accuracy/
+> - https://www.andygup.net/how-accurate-is-android-gps-part-1-understanding-location-data/
+> - https://developer.android.com/guide/topics/location/strategies
+>  - https://www.gps.gov/systems/gps/performance/accuracy/
+>  http://www.wetlandsurveysireland.com/news/how-to-achieve-sub-metre.html
 
+### Week 6-7
+- Researching Shared Augmented Reality
+- Investigated ARCore Cloud Anchors to achieve this
+- Working on creating basic AR using Cloud Anchors
+- Set up Unity for development 
+- Set up Android Studio and ARCore Dependencies 
+- Set up Firebase for ARCore Cloud Anchors
+- Got Google Cloud Anchors API key
+- Created basic android app with shared AR
+#### Cloud Anchor Host
+![Alt Text](https://github.com/DaireNiC/AR-Application/blob/master/media/cloud_anchor_host.jpg)
 
+#### Cloud Anchor Resolved 
+![Alt Text](https://github.com/DaireNiC/AR-Application/blob/master/media/cloud_anchor_client.jpg)
+> Sources
+>   - https://developers.google.com/ar/develop/java/cloud-anchors/overview-android
+> - https://developers.google.com/ar/develop/unity/cloud-anchors/quickstart-unity-android
+
+### Week 8 
+- Researched Vuforia SDK for creating multiplatform AR apps
+- Implemented Ground plane detection
+- Imported 3D model and added control for movement 
+
+- https://blogs.unity3d.com/2018/01/15/vuforia-in-unity-build-cross-platform-ar-apps/?_ga=2.222623579.1738989719.1541076993-871768103.1538569267
+- https://www.instructables.com/id/Augmented-Reality-App-for-Beginners/
