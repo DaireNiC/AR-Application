@@ -1,6 +1,7 @@
 
 
 
+
 ## About 
 
 This repo is a compilation of the research and progress of my final year software development project. 
@@ -102,3 +103,11 @@ Mixed reality, which includes both virtual and augmented, is an area in tech mak
 > Sources
 >   - https://developers.google.com/ar/develop/java/cloud-anchors/overview-android
 > - https://developers.google.com/ar/develop/unity/cloud-anchors/quickstart-unity-android
+
+### Week 8 
+- Researched Vuforia SDK for creating multiplatform AR apps
+- Implemented Ground plane detection
+- Imported 3D model and added control for movement 
+
+- https://blogs.unity3d.com/2018/01/15/vuforia-in-unity-build-cross-platform-ar-apps/?_ga=2.222623579.1738989719.1541076993-871768103.1538569267
+- https://www.instructables.com/id/Augmented-Reality-App-for-Beginners/
