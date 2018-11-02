@@ -2,6 +2,8 @@
 
 
 
+
+
 ## About 
 
 This repo is a compilation of the research and progress of my final year software development project. 
@@ -98,7 +100,7 @@ Mixed reality, which includes both virtual and augmented, is an area in tech mak
 #### Cloud Anchor Host
 ![Alt Text](https://github.com/DaireNiC/AR-Application/blob/master/media/cloud_anchor_host.jpg)
 
-#### Cloud Anchor Resolved 
+#### Cloud Anchor Test with ARCore & Firebase 
 ![Alt Text](https://github.com/DaireNiC/AR-Application/blob/master/media/cloud_anchor_client.jpg)
 > Sources
 >   - https://developers.google.com/ar/develop/java/cloud-anchors/overview-android
@@ -115,3 +117,11 @@ Mixed reality, which includes both virtual and augmented, is an area in tech mak
 
 - https://blogs.unity3d.com/2018/01/15/vuforia-in-unity-build-cross-platform-ar-apps/?_ga=2.222623579.1738989719.1541076993-871768103.1538569267
 - https://www.instructables.com/id/Augmented-Reality-App-for-Beginners/
+
+
+### Week 9
+ - Exploring ways to create a fully functional crossplatform application
+ - Researched ViroReact, Expo AR however they don't support shared ar (nor do they plan to anytime soon)
+ - https://github.com/viromedia/viro/issues/451
+ - Wikitude 
+ 
