@@ -109,5 +109,9 @@ Mixed reality, which includes both virtual and augmented, is an area in tech mak
 - Implemented Ground plane detection
 - Imported 3D model and added control for movement 
 
+
+![Alt Text](https://media.giphy.com/media/1irNkg7dDMnEwr0gGz/giphy.gif)
+
+
 - https://blogs.unity3d.com/2018/01/15/vuforia-in-unity-build-cross-platform-ar-apps/?_ga=2.222623579.1738989719.1541076993-871768103.1538569267
 - https://www.instructables.com/id/Augmented-Reality-App-for-Beginners/
