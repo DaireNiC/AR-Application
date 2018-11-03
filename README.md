@@ -4,6 +4,7 @@
 
 
 
+
 ## About 
 
 This repo is a compilation of the research and progress of my final year software development project. 
@@ -122,6 +123,10 @@ Mixed reality, which includes both virtual and augmented, is an area in tech mak
 ### Week 9
  - Exploring ways to create a fully functional crossplatform application
  - Researched ViroReact, Expo AR however they don't support shared ar (nor do they plan to anytime soon)
- - https://github.com/viromedia/viro/issues/451
- - Wikitude 
+	 - https://github.com/viromedia/viro/issues/451
+ - Looking into wikitude as an option with JS framework
+ - Tried to import sketchup model to existing cloud anchor example
+	 - 3D file must be exported as .obj (sketchup supports this functionality)
+	 -  Incorporated Sceneform Plugin to support custom objects
+	 - 
  
