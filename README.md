@@ -123,10 +123,23 @@ Mixed reality, which includes both virtual and augmented, is an area in tech mak
 ### Week 9
  - Exploring ways to create a fully functional crossplatform application
  - Researched ViroReact, Expo AR however they don't support shared ar (nor do they plan to anytime soon)
-	 - https://github.com/viromedia/viro/issues/451
+	 - https:\//github.com/viromedia/viro/issues/451
  - Looking into wikitude as an option with JS framework
  - Tried to import sketchup model to existing cloud anchor example
 	 - 3D file must be exported as .obj (sketchup supports this functionality)
 	 -  Incorporated Sceneform Plugin to support custom objects
-	 - 
- 
+
+#### Wikitude SDK
+- Seems to be the most applicable AR SDK for crossplatform application development
+- Supports Unity, Android, IOS, Apache Cordova & Xamarian
+ - Latest version of SDK, WIkitude 8.0, uses ARCore & ARKit under the hood
+ - Free for experimental development and learning - must pay for commercial use
+- Extra functionality that other SDKs don't provide, e.g Scene recognition 
+	- Could be used for placing a 3d object such as an extension for a building, in real space
+- Provides support for Shared AR 
+	- more research required here as it differs from how ARCore implements shared AR.
+Resources : 
+- https://www.wikitude.com/blog-sdk-8-endless-ar-possibilities/
+- https://next.reality.news/news/wikitude-8-gives-app-developers-ability-create-private-micro-ar-clouds-0185083/
+- https://www.wikitude.com/external/doc/documentation/latest/phonegap/instanttracking.html#instant-tracking
+- https://medium.com/@wikitude/debunking-the-ar-cloud-79e93f5b94f7
