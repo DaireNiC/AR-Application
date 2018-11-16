@@ -129,9 +129,7 @@ Mixed reality, which includes both virtual and augmented, is an area in tech mak
 	 -  Incorporated Sceneform Plugin to support custom objects
  - Looking into wikitude as an option with JS framework
  - Environment Setup for wikitude
- 	- installed node.js, apache cordova
-	
-	 
+ 	- installed node.js, apache cordova	 
 	 
 
 #### Wikitude SDK
@@ -143,6 +141,15 @@ Mixed reality, which includes both virtual and augmented, is an area in tech mak
 	- Could be used for placing a 3d object such as an extension for a building, in real space
 - Provides support for Shared AR 
 	- more research required here as it differs from how ARCore implements shared AR.
+	
+	
+### Week 10
+- Obtained Education License from Wikitude.
+- Created sample Apache Cordova app using Wikitude Plugin.
+- Also managed to create Ionic3 app implementing the plugin.
+
+
+
 Resources : 
 - https://www.wikitude.com/external/doc/documentation/latest/phonegap/setupguidecordovacli.html#setup-guide-cordova-cli
 - https://www.wikitude.com/blog-sdk-8-endless-ar-possibilities/
