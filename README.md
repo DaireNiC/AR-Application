@@ -157,7 +157,7 @@ Mixed reality, which includes both virtual and augmented, is an area in tech mak
 - Began research on [scene recognition](https://www.wikitude.com/external/doc/documentation/latest/phonegap/objecttracking.html#introduction-to-object-and-scene-recognition)
 
 ##### Custom 3d Model placement using ionic and Wikitude
-- ![week11](https://media.giphy.com/media/9Pz0pPEXp7XDpaMozZ/giphy.gif)
+- ![week11](https://github.com/DaireNiC/AR-Application/blob/master/week_11_progress.gif)
 
 Resources : 
 - https://www.wikitude.com/external/doc/documentation/latest/phonegap/objecttracking.html#introduction-to-object-and-scene-recognition
