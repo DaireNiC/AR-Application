@@ -148,9 +148,19 @@ Mixed reality, which includes both virtual and augmented, is an area in tech mak
 - Created sample Apache Cordova app using Wikitude Plugin.
 - Also managed to create Ionic3 app implementing the plugin.
 
+### Week 11
+- Fixed issues with ionic 3 compatibility
+- Integrated wikitude plane detection
+- Used custom 3d model 
+	- Used Wikitude encoder to convert from FBX format --> Wikitude compatible file (.wtc3)
+- Created Ionic 3 app that plants cusom 3d object on plane
+- Began research on [scene recognition](https://www.wikitude.com/external/doc/documentation/latest/phonegap/objecttracking.html#introduction-to-object-and-scene-recognition)
 
+##### Custom 3d Model placement using ionic and Wikitude
+- ![Alt Text](https://media.giphy.com/media/9Pz0pPEXp7XDpaMozZ/giphy.gif)
 
 Resources : 
+- https://www.wikitude.com/external/doc/documentation/latest/phonegap/objecttracking.html#introduction-to-object-and-scene-recognition
 - https://www.wikitude.com/external/doc/documentation/latest/phonegap/setupguidecordovacli.html#setup-guide-cordova-cli
 - https://www.wikitude.com/blog-sdk-8-endless-ar-possibilities/
 - https://next.reality.news/news/wikitude-8-gives-app-developers-ability-create-private-micro-ar-clouds-0185083/
