@@ -159,6 +159,12 @@ Mixed reality, which includes both virtual and augmented, is an area in tech mak
 ##### Custom 3d Model placement using ionic and Wikitude
 - ![week11](https://github.com/DaireNiC/AR-Application/blob/master/week_11_progress.gif)
 
+### Week 12
+- Worked on adding a more complex 3d model to AR scene
+- researched various 3d model formats
+- Used wikitude encoder to convert .FBX model to .wtc
+- Experimented with using blender
+- 
 Resources : 
 - https://www.wikitude.com/external/doc/documentation/latest/phonegap/objecttracking.html#introduction-to-object-and-scene-recognition
 - https://www.wikitude.com/external/doc/documentation/latest/phonegap/setupguidecordovacli.html#setup-guide-cordova-cli
