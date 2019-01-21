@@ -5,6 +5,7 @@
 
 
 
+
 ## About 
 
 This repo is a compilation of the research and progress of my final year software development project. 
@@ -164,7 +165,7 @@ Mixed reality, which includes both virtual and augmented, is an area in tech mak
 - researched various 3d model formats
 - Used wikitude encoder to convert .FBX model to .wtc
 - Experimented with using blender
-- 
+
 Resources : 
 - https://www.wikitude.com/external/doc/documentation/latest/phonegap/objecttracking.html#introduction-to-object-and-scene-recognition
 - https://www.wikitude.com/external/doc/documentation/latest/phonegap/setupguidecordovacli.html#setup-guide-cordova-cli
@@ -172,3 +173,11 @@ Resources :
 - https://next.reality.news/news/wikitude-8-gives-app-developers-ability-create-private-micro-ar-clouds-0185083/
 - https://www.wikitude.com/external/doc/documentation/latest/phonegap/instanttracking.html#instant-tracking
 - https://medium.com/@wikitude/debunking-the-ar-cloud-79e93f5b94f7
+
+### Week 13-16
+- Continued work on adding a complex 3d model to AR scene
+- Experimented with various models/formats
+- Issues with loading textures/materials
+- Worked with Blender to open 3d models, apply textures,  export  to FBX format with materials baked into file. 
+- Issues encountered working with wikitude encoder to convert .FBX model to .wtc
+- Contacted Wikitude for support with the issue. 
