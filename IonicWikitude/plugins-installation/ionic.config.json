@@ -1,0 +1,7 @@
+{
+  "name": "plugins-installation",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular"
+}

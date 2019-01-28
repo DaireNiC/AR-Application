@@ -106,7 +106,7 @@ var World = {
 
     addModel: function addModelFn(xpos, ypos) {
         if (this.tracker.state === AR.InstantTrackerState.TRACKING) {
-            var model = new AR.Model("assets/models/building_02.wt3", {
+            var model = new AR.Model("assets/models/building_01.wt3", {
               scale: {
         				x: 0.001,
         				y: 0.001,
