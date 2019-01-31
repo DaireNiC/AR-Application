@@ -181,3 +181,15 @@ Resources :
 - Worked with Blender to open 3d models, apply textures,  export  to FBX format with materials baked into file. 
 - Issues encountered working with wikitude encoder to convert .FBX model to .wtc
 - Contacted Wikitude for support with the issue. 
+
+### Week 17
+- Fixed issue with applying textures to .FBX model.
+- Created demo app with improved model.
+- Experimented with using a target instead of plane detection for displaying model in an office setting.
+	- Found that placing a simple item to create contrast (e.g piece of paper) on table was sufficient to successfully detect a plane.
+- Began work on researching Persistent Targets for shared AR.
+
+Resources :
+- https://blender.stackexchange.com/questions/57531/fbx-export-why-there-are-no-materials-or-textures
+- https://www.wikitude.com/external/doc/documentation/latest/phonegap/instanttracking.html#persistent-instant-targets
+- https://www.wikitude.com/external/doc/documentation/latest/phonegap/objecttracking.html#object-and-scene-recognition
