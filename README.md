@@ -189,7 +189,7 @@ Resources :
 	- Found that placing a simple item to create contrast (e.g piece of paper) on table was sufficient to successfully detect a plane.
 - Began work on researching Persistent Targets for shared AR.
 
-![week17](https://github.com/DaireNiC/AR-Application/blob/master/media/week_18_demo.gif)
+![week17](https://media.giphy.com/media/EPenMSx8siJiBUnZJr/giphy.gif)
 
 Resources :
 - https://blender.stackexchange.com/questions/57531/fbx-export-why-there-are-no-materials-or-textures
