@@ -189,6 +189,8 @@ Resources :
 	- Found that placing a simple item to create contrast (e.g piece of paper) on table was sufficient to successfully detect a plane.
 - Began work on researching Persistent Targets for shared AR.
 
+![week17](https://github.com/DaireNiC/AR-Application/blob/master/week_18_demo.gif)
+
 Resources :
 - https://blender.stackexchange.com/questions/57531/fbx-export-why-there-are-no-materials-or-textures
 - https://www.wikitude.com/external/doc/documentation/latest/phonegap/instanttracking.html#persistent-instant-targets
