@@ -114,7 +114,7 @@ Mixed reality, which includes both virtual and augmented, is an area in tech mak
 - Imported 3D model and added control for movement 
 
 
-![Alt Text](https://media.giphy.com/media/1irNkg7dDMnEwr0gGz/giphy.gif)
+![Alt Text](https://media.giphy.com/media/EPenMSx8siJiBUnZJr/giphy.gif)
 
 
 - https://blogs.unity3d.com/2018/01/15/vuforia-in-unity-build-cross-platform-ar-apps/?_ga=2.222623579.1738989719.1541076993-871768103.1538569267
@@ -189,7 +189,7 @@ Resources :
 	- Found that placing a simple item to create contrast (e.g piece of paper) on table was sufficient to successfully detect a plane.
 - Began work on researching Persistent Targets for shared AR.
 
-![week17](https://media.giphy.com/media/EPenMSx8siJiBUnZJr/giphy.gif)
+![week17](https://media.giphy.com/media/EPenMSx8siJiBUnZJr/giphy-downsized-large.gif)
 
 Resources :
 - https://blender.stackexchange.com/questions/57531/fbx-export-why-there-are-no-materials-or-textures
