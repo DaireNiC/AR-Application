@@ -1,0 +1,262 @@
+#
+# Wavefront material file: u:\demo reel project\turbosquid\current\scenes\colonial_obj.mtl
+#
+# Converted by the PolyTrans geometry converter from Okino Computer Graphics, Inc.
+# Date/time of export: 09/03/2012 10:46:28
+#
+# Bounding box of geometry = (-100.954,-9.35983,-117.91) to (105.336,49.8744,-1.48525).
+
+newmtl default
+	Ns 32
+	d 1
+	illum 2
+	Kd 0.4 0.4 0.4
+	Ks 0.7 0.7 0.7
+	Ka 0.3 0.3 0.3
+
+newmtl canopy2
+	Ns 25
+	d 0.8
+	illum 2
+	Kd 0.8 0.796863 0.793726
+	Ks 0 0 0
+	Ka 0.3 0.298824 0.297647
+
+newmtl canopy2a
+	Ns 256
+	d 1
+	illum 2
+	Kd 0.427059 0.338824 0.151765
+	Ks 0.379608 0.301176 0.134902
+	Ka 0.284706 0.225882 0.101176
+
+newmtl canopy2b
+	Ns 256
+	d 1
+	illum 2
+	Kd 0.427059 0.338824 0.151765
+	Ks 0.379608 0.301176 0.134902
+	Ka 0.284706 0.225882 0.101176
+
+newmtl cornice
+	Ns 25
+	d 1
+	illum 2
+	Kd 0.996078 0.996078 0.996078
+	Ks 0 0 0
+	Ka 0.298824 0.298824 0.298824
+
+newmtl daun
+	Ns 25
+	d 1
+	illum 2
+	Kd 0.172549 0.533333 0.109804
+	Ks 0 0 0
+	Ka 0.0517647 0.16 0.0329412
+
+newmtl deckchair_sofa
+	Ns 25
+	d 1
+	illum 2
+	Kd 0.980392 0.956863 0.886275
+	Ks 0.196078 0.191373 0.177255
+	Ka 0.294118 0.287059 0.265882
+	map_bump -bm 0.0416667 rough.jpg
+
+newmtl deckchair_wood
+	Ns 25
+	d 1
+	illum 2
+	Kd 0.713726 0.435294 0.262745
+	Ks 0 0 0
+	Ka 0.214118 0.130588 0.0788235
+
+newmtl dome
+	Ns 25
+	d 1
+	illum 2
+	Kd 0.843137 0.909804 0.85098
+	Ks 0 0 0
+	Ka 0.252941 0.272941 0.255294
+
+newmtl flat_roof
+	Ns 25
+	d 1
+	illum 2
+	Kd 0.784314 0.784314 0.784314
+	Ks 0 0 0
+	Ka 0.235294 0.235294 0.235294
+
+newmtl floor
+	Ns 6
+	d 1
+	illum 2
+	Kd 0.734118 0.670588 0.585882
+	Ks 0.326275 0.298039 0.260392
+	Ka 0.244706 0.223529 0.195294
+
+newmtl floor_lines
+	Ns 25
+	d 1
+	illum 2
+	Kd 1 1 1
+	Ks 0 0 0
+	Ka 0.3 0.3 0.3
+
+newmtl fountain
+	Ns 25
+	d 1
+	illum 2
+	Kd 0.756863 0.737255 0.623529
+	Ks 0.151373 0.147451 0.124706
+	Ka 0.227059 0.221176 0.187059
+	map_bump -bm 0.0416667 rough.jpg
+
+newmtl glass
+	Ns 300
+	d 0.5
+	illum 2
+	Kd 0.118824 0.148235 0.138824
+	Ks 0.277255 0.345882 0.323922
+	Ka 0.118824 0.148235 0.138824
+
+newmtl glass2
+	Ns 300
+	d 0.2
+	illum 2
+	Kd 0.12 0.124706 0.122353
+	Ks 0.28 0.29098 0.28549
+	Ka 0.12 0.124706 0.122353
+
+newmtl grc
+	Ns 4
+	d 1
+	illum 2
+	Kd 0.92549 0.917647 0.909804
+	Ks 0.0462745 0.0458824 0.0454902
+	Ka 0.277647 0.275294 0.272941
+	map_bump -bm 0.0416667 rough.jpg
+
+newmtl green
+	Ns 25
+	d 1
+	illum 2
+	Kd 0.260784 0.292157 0.178431
+	Ks 0.0521569 0.0584314 0.0356863
+	Ka 0.156471 0.175294 0.107059
+
+newmtl kerb
+	Ns 25
+	d 1
+	illum 2
+	Kd 0.933333 0.933333 0.917647
+	Ks 0 0 0
+	Ka 0.28 0.28 0.275294
+	map_bump -bm 0.0416667 rough.jpg
+
+newmtl pave
+	Ns 6
+	d 1
+	illum 2
+	Kd 0.666667 0.537255 0.368627
+	Ks 0.0666667 0.0537255 0.0368627
+	Ka 0.2 0.161176 0.110588
+
+newmtl pool
+	Ns 25
+	d 1
+	illum 2
+	Kd 0.615686 0.776471 0.890196
+	Ks 0.307843 0.388235 0.445098
+	Ka 0.184706 0.232941 0.267059
+
+newmtl pool_deck
+	Ns 25
+	d 1
+	illum 2
+	Kd 0.984314 0.968627 0.956863
+	Ks 0 0 0
+	Ka 0.295294 0.290588 0.287059
+
+newmtl railing
+	Ns 128
+	d 1
+	illum 2
+	Kd 0.189412 0.153725 0.14549
+	Ks 0.0811765 0.0658824 0.0623529
+	Ka 0.0811765 0.0658824 0.0623529
+
+newmtl road
+	Ns 25
+	d 1
+	illum 2
+	Kd 0.784314 0.784314 0.784314
+	Ks 0 0 0
+	Ka 0.235294 0.235294 0.235294
+
+newmtl roof
+	Ns 25
+	d 1
+	illum 2
+	Kd 0.483529 0.324706 0.229412
+	Ks 0.107451 0.0721569 0.0509804
+	Ka 0.161176 0.108235 0.0764706
+
+newmtl roof2
+	Ns 25
+	d 1
+	illum 2
+	Kd 0.483529 0.324706 0.229412
+	Ks 0.107451 0.0721569 0.0509804
+	Ka 0.161176 0.108235 0.0764706
+
+newmtl walkway
+	Ns 6
+	d 1
+	illum 2
+	Kd 0.666667 0.537255 0.368627
+	Ks 0.0666667 0.0537255 0.0368627
+	Ka 0.2 0.161176 0.110588
+
+newmtl wall
+	Ns 25
+	d 1
+	illum 2
+	Kd 0.896471 0.861176 0.755294
+	Ks 0.0996078 0.0956863 0.0839216
+	Ka 0.298824 0.287059 0.251765
+	map_bump -bm 0.0416667 rough.jpg
+
+newmtl wall_white
+	Ns 4
+	d 1
+	illum 2
+	Kd 0.92549 0.917647 0.909804
+	Ks 0.0462745 0.0458824 0.0454902
+	Ka 0.277647 0.275294 0.272941
+	map_bump -bm 0.0416667 rough.jpg
+
+newmtl wall_1
+	Ns 25
+	d 1
+	illum 2
+	Kd 0.784314 0.784314 0.784314
+	Ks 0 0 0
+	Ka 0.235294 0.235294 0.235294
+
+newmtl water
+	Ns 128
+	d 0.3
+	illum 2
+	Kd 0.181961 0.326275 0.483137
+	Ks 0.136471 0.244706 0.362353
+	Ka 0.0682353 0.122353 0.181176
+
+newmtl winfame
+	Ns 25
+	d 1
+	illum 2
+	Kd 0.614902 0.458039 0.279216
+	Ks 0 0 0
+	Ka 0.230588 0.171765 0.104706
+
