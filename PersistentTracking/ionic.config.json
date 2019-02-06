@@ -1,0 +1,7 @@
+{
+  "name": "WikitudeIonic3StarterApp",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular"
+}
