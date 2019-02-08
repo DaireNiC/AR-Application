@@ -17,6 +17,7 @@ AR.context.on2FingerGestureStarted = function() {
 };
 
 var World = {
+  debugger;
     drawables: [],
 
     modelPaths: [
@@ -282,7 +283,7 @@ var World = {
             });
         });
         debug.log("in the save target method");
-        console.log(augmentations.uri);
+        console.log(augmentations);
         if (this.tracker.state === AR.InstantTrackerState.TRACKING) {
             AR.platform.sendJSONObject({
                 action: "save_current_instant_target",
