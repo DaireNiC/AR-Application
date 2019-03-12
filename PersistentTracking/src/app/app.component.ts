@@ -108,19 +108,26 @@ export class MyApp {
               break;
             case "load_existing_instant_target":
               console.log("in load method");
+
               // LOAD from DB
               var ref = firebase.database().ref('/ARSessions/' + this.global.sessionKey);
 
               var dbres = {} ;
               var key = this.global.sessionKey;
+
+              // getting the latest data from the db
               this.ref.on('value', snapshot => {
-              //  this.dbResult = snapshot.val();
-              dbres = snapshot.val();
+                dbres = snapshot.val();
               });
-              // ar target loaded from db
+
+              //REsult loaded from the DB
               console.log(" ENTIRE RESULT from  DB: " + JSON.stringify(dbres));
-          //    console.log(" SESSION RESULT from DB: " + JSON.stringify(this.dbResult[this.global.sessionKey]));
-            writeToFile();
+
+              // display the result for this session from db
+              console.log(" SESSION RESULT from DB: " + JSON.stringify(dbres[key]));
+
+              //write the loaded result to a file
+              writeToFile(dbres, key);
 
       //        WikitudePlugin.callJavaScript("World.saveCurrentInstantTargetToUrl(\"" + cordova.file.dataDirectory + "SavedInstantTarget.wto" + "\");")
 
@@ -157,7 +164,7 @@ export class MyApp {
                   fileEntry.file(function(file) {
                     var reader = new FileReader();
                     reader.onloadend = function() {
-                      console.log(" FILE READ AFTER WIRITNG TO FILE FROM DB: " + this.result);
+                      console.log(" FILE READ \n AFTER WIRITNG TO FILE FROM DB: " + this.result);
                       //              console.log("Successful file  db: " + this.dbResult);
 
 
@@ -191,11 +198,14 @@ export class MyApp {
         console.log("Something went wrong");
       }
 
-      function writeToFile(){
-        //write what is in DB to file
+      function writeToFile(dbres, key){
+        //write what is in DB to fie
+        var dbres = dbres;
         window.resolveLocalFileSystemURL(cordova.file.externalDataDirectory, function(fs) {
-          var dbres = {} ;
-          var key = this.sessionKey;
+
+        //  var key = this.sessionKey;
+        console.log("KEY: " + key);
+        console.log("RES: " + dbres);
 
           console.log('file system open: ' + JSON.stringify(fs));
           fs.getFile("SavedAugmentations.json",
