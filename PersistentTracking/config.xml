@@ -25,7 +25,10 @@
     <plugin name="cordova-plugin-splashscreen" spec="5.0.2" />
     <plugin name="cordova-plugin-ionic-webview" spec="^2.0.0" />
     <plugin name="cordova-plugin-ionic-keyboard" spec="^2.0.5" />
-    <plugin name="com.wikitude.phonegap.WikitudePlugin" spec="..\wikitude_test\plugins\com.wikitude.phonegap.WikitudePlugin" />
     <plugin name="cordova-plugin-compat" spec="1.2.0" />
-    <engine name="android" spec="7.1.2" />
+    <plugin name="cordova-plugin-file" spec="^6.0.1" />
+    <allow-navigation href="http://192.168.0.38:8100" sessionid="9ea97000" />
+    <allow-navigation href="http://192.168.0.39:8100" sessionid="2e4b9a3b" />
+    <plugin name="com.wikitude.phonegap.WikitudePlugin" spec="https://github.com/Wikitude/wikitude-cordova-plugin.git" />
+    <engine name="android" spec="7.1.4" />
 </widget>

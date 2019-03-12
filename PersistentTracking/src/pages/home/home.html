@@ -1,17 +1,32 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>Home</ion-title>
+    <ion-title>AddRoom</ion-title>
   </ion-navbar>
 </ion-header>
 
+
 <ion-content padding>
-  <h2>Welcome to Ionic!</h2>
-  <p>
-    This starter project comes with simple tabs-based layout for apps
-    that are going to primarily use a Tabbed UI.
-  </p>
-  <p>
-    Take a look at the <code>src/pages/</code> directory to add or change tabs,
-    update any existing page or create new pages.
-  </p>
+  <form (ngSubmit)="addSession()">
+    <ion-list>
+      <ion-item>
+        <ion-label floating>Create a Session</ion-label>
+        <ion-input type="text" [(ngModel)]="data.new_roomname" name="roomname" required=""></ion-input>
+      </ion-item>
+      <ion-item>
+        <button ion-button full round color="secondary" type="submit">Add</button>
+      </ion-item>
+    </ion-list>
+  </form>
+
+  <form (ngSubmit)="loadSession()">
+    <ion-list>
+      <ion-item>
+        <ion-label floating>Load Session</ion-label>
+        <ion-input type="text" [(ngModel)]="data.roomname" name="roomname" required=""></ion-input>
+      </ion-item>
+      <ion-item>
+        <button ion-button full round color="secondary" type="submit">Load</button>
+      </ion-item>
+    </ion-list>
+  </form>
 </ion-content>

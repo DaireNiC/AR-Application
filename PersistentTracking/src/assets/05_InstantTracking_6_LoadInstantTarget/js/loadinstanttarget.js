@@ -1,7 +1,8 @@
-var rotationValues = [];
+nb        var rotationValues = [];
 var scaleValues = [];
 
 var oneFingerGestureAllowed = false;
+
 
 /*
     This global callback can be utilized to react on the transition from and to 2 finger gestures; specifically, we
@@ -59,6 +60,8 @@ var World = {
     /* Called from platform specific part of the sample */
     loadExistingInstantTargetFromUrl: function loadExistingInstantTargetFromUrlFn(url, augmentations) {
         var mapResource = new AR.TargetCollectionResource(url);
+        console.log(url);
+
         this.tracker.loadExistingInstantTarget(mapResource, function() {
 
             World.instantTrackable.drawables.removeCamDrawable(World.drawables);

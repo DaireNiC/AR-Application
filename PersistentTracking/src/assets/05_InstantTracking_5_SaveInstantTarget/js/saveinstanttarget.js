@@ -17,9 +17,7 @@ AR.context.on2FingerGestureStarted = function() {
 };
 
 var World = {
-  debugger;
     drawables: [],
-
     modelPaths: [
         "assets/models/building_04.wt3",
         "assets/models/couch.wt3",
@@ -84,6 +82,8 @@ var World = {
                 Device height needs to be as accurate as possible to have an accurate scale returned by the Wikitude
                 SDK.
              */
+
+
             deviceHeight: 1.0,
             onError: World.onError,
             onChangeStateError: World.onError,
@@ -282,8 +282,7 @@ var World = {
                 scale: model.scale
             });
         });
-        debug.log("in the save target method");
-        console.log(augmentations);
+
         if (this.tracker.state === AR.InstantTrackerState.TRACKING) {
             AR.platform.sendJSONObject({
                 action: "save_current_instant_target",
@@ -297,82 +296,87 @@ var World = {
     /* Called from platform specific part of the sample. */
     saveCurrentInstantTargetToUrl: function saveCurrentInstantTargetToUrlFn(url) {
         this.tracker.saveCurrentInstantTarget(url, function() {
-          console.log("thi is the url " + url);
             alert("Saving was successful");
         }, function(error) {
             alert("Saving failed: " + error);
         })
     },
 
-    loadExistingInstantTarget: function loadExistingInstantTargetFn() {
-        AR.platform.sendJSONObject({
-            action: "load_existing_instant_target"
-        });
-    },
-    /* Called from platform specific part of the sample */
-    loadExistingInstantTargetFromUrl: function loadExistingInstantTargetFromUrlFn(url, augmentations) {
-        var mapResource = new AR.TargetCollectionResource(url);
-        this.tracker.loadExistingInstantTarget(mapResource, function() {
 
-            this.instantTrackable.drawables.removeCamDrawable(this.drawables);
-            this.drawables.forEach(function(drawable) {
-                drawable.destroy();
+        loadExistingInstantTarget: function loadExistingInstantTargetFn() {
+          console.log("loading")
+            AR.platform.sendJSONObject({
+                action: "load_existing_instant_target"
             });
-            this.drawables = [];
-            augmentations.forEach(function(model) {
-                var modelIndex = rotationValues.length;
+        },
 
-                rotationValues[modelIndex] = model.rotate.z;
-                scaleValues[modelIndex] = model.scale.x;
+        /* Called from platform specific part of the sample */
+        loadExistingInstantTargetFromUrl: function loadExistingInstantTargetFromUrlFn(url, augmentations) {
+            var mapResource = new AR.TargetCollectionResource(url);
+            console.log(url);
+            this.tracker.loadExistingInstantTarget(mapResource, function() {
 
-                this.drawables.push(new AR.Model(model.uri, {
-                    translate: model.translate,
-                    rotate: model.rotate,
-                    scale: model.scale,
-                    onDragBegan: function() {
-                        oneFingerGestureAllowed = true;
-                    },
-                    onDragChanged: function(relativeX, relativeY, intersectionX, intersectionY) {
-                        if (oneFingerGestureAllowed) {
-                            /*
-                                We recommend setting the entire translate property rather than its individual components
-                                as the latter would cause several call to native, which can potentially lead to
-                                performance issues on older devices. The same applied to the rotate and scale property.
-                            */
-                            this.translate = {
-                                x: intersectionX,
-                                y: intersectionY
+            
+                World.instantTrackable.drawables.removeCamDrawable(World.drawables);
+                World.drawables.forEach(function(drawable) {
+                    drawable.destroy();
+                });
+                World.drawables = [];
+                augmentations.forEach(function(model) {
+                    var modelIndex = rotationValues.length;
+
+                    rotationValues[modelIndex] = model.rotate.z;
+                    scaleValues[modelIndex] = model.scale.x;
+
+                    World.drawables.push(new AR.Model(model.uri, {
+                        translate: model.translate,
+                        rotate: model.rotate,
+                        scale: model.scale,
+                        onDragBegan: function() {
+                            oneFingerGestureAllowed = true;
+                        },
+                        onDragChanged: function(relativeX, relativeY, intersectionX, intersectionY) {
+                            if (oneFingerGestureAllowed) {
+                                /*
+                                    We recommend setting the entire translate property rather than its individual components
+                                    as the latter would cause several call to native, which can potentially lead to
+                                    performance issues on older devices. The same applied to the rotate and scale property.
+                                */
+                                this.translate = {
+                                    x: intersectionX,
+                                    y: intersectionY
+                                };
+                            }
+                        },
+                        onRotationChanged: function(angleInDegrees) {
+                            this.rotate.z = rotationValues[modelIndex] - angleInDegrees;
+                        },
+                        onRotationEnded: function() {
+                            rotationValues[modelIndex] = this.rotate.z
+                        },
+                        onScaleChanged: function(scale) {
+                            var scaleValue = scaleValues[modelIndex] * scale;
+                            this.scale = {
+                                x: scaleValue,
+                                y: scaleValue,
+                                z: scaleValue
                             };
-                        }
-                    },
-                    onRotationChanged: function(angleInDegrees) {
-                        this.rotate.z = rotationValues[modelIndex] - angleInDegrees;
-                    },
-                    onRotationEnded: function() {
-                        rotationValues[modelIndex] = this.rotate.z
-                    },
-                    onScaleChanged: function(scale) {
-                        var scaleValue = scaleValues[modelIndex] * scale;
-                        this.scale = {
-                            x: scaleValue,
-                            y: scaleValue,
-                            z: scaleValue
-                        };
-                    },
-                    onScaleEnded: function() {
-                        scaleValues[modelIndex] = this.scale.x;
-                    },
-                    onError: World.onError
-                }))
-            });
-            this.instantTrackable.drawables.addCamDrawable(this.drawables);
-            alert("Loading was successful");
-        }, function(error) {
-            alert("Loading failed: " + error);
-        }, {
-            expansionPolicy: AR.CONST.INSTANT_TARGET_EXPANSION_POLICY.ALLOW_EXPANSION
-        })
-    },
+                        },
+                        onScaleEnded: function() {
+                            scaleValues[modelIndex] = this.scale.x;
+                        },
+                        onError: World.onError
+                    }))
+                });
+                World.instantTrackable.drawables.addCamDrawable(World.drawables);
+                alert("Loading was successful");
+            }, function(error) {
+                alert("Loading failed: " + error);
+            }, {
+                expansionPolicy: AR.CONST.INSTANT_TARGET_EXPANSION_POLICY.ALLOW_EXPANSION
+            })
+        },
+
     onError: function onErrorFn(error) {
         alert(error)
     },

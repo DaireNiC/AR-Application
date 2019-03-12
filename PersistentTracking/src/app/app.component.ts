@@ -3,22 +3,33 @@ import { Component } from '@angular/core';
 import { Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-
+import { AngularFireDatabase } from 'angularfire2/database';
+import { SingletonService } from '../services/SingletonService';
+import * as firebase from 'Firebase';
 import { TabsPage } from '../pages/tabs/tabs';
-
+import { GlobalProvider } from "../providers/global/global";
+declare let window: any;
 declare let cordova: any;
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
   rootPage: any = TabsPage;
+  sessionKey = '';
+  dbResult = [];
+  ref = firebase.database().ref('/ARSessions/');
 
-  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
+  constructor(public global: GlobalProvider, platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, public db: AngularFireDatabase, public singleton: SingletonService) {
+    this.sessionKey = this.global.sessionKey;
     platform.ready().then(() => {
+      window.addEventListener('filePluginIsReady', function() { console.log('File plugin is ready'); }, false);
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       statusBar.styleDefault();
+
       splashScreen.hide();
+      console.log();
+
 
       /** Enter your Wikitude (trial) License Key here. You can register and download your free license key here: http://www.wikitude.com/developer/licenses */
       WikitudePlugin._sdkKey = "Xw58KRFIwpdeoszmXTK6dX77af/Cw3G8/DfUVD/1DtOAZWOUNaxebR0UdnjyPWjdiOKmFg8gwNE7jsTakKC24tG1z/aAH0FqjRFnKn0aMjqm9RcXLX0gxuTq7puupL87u200KLHRxkDt4R2r960P+kwrw+YuV6LgRkL1ufmvH7hTYWx0ZWRfX8nxm1NCoxx/6XKFrk81jMsn84J4A0DZBgsTmRd8zNVKC2xPPscfmaiHBFcAoJzhYqmhO+0+qcYB6Wb+w3b0xJ+SxspQSLgZsZDa6rlQMptkVe2GKYX5m46uKQXEAI+nXlaD41YDg9UrQ5Bq+3Qmkns7n4Inr2B4Fhn6oFG+vGVrdtBUmeAIW9d4astEMKpFI2FOHinlVxpMQAYoGh0wp85N6iJr5/DIIJ9ngWjmGGoDTkOERprV+lopi1/DAIpq/yr3mCWodcZTxPjw2NSlZENl236N6rSo1jf6pMpOn4Hc8K57rtPLNsW7KvUg0oM8AGcwentD5uG80EuJnNV47OPJumw/LkqRjEEj3S8aO4oBAacDJpsgY8UypkBOT/oOe5cS5sc2SkFWZ+3+/AJJqwGLRH9slS8XPh/Y3p8XsG77AjUnIX2UAS/iJm9QmeA984mgz2edrmv+Z2JdwKeI6r9SubqQzbuDqvRauup8w3xtWbwUvOuO+/lVlgzOjY6/QXpetpx7zgjCstxfWCQx6v11YltmXCfYt5rCpu7RzFTFRyh+GIrGil7JUR4mUsVPub1cKiCRwaas";
@@ -42,8 +53,10 @@ export class MyApp {
       // set the function to be called, when a "communication" is indicated from the AR View
 
       WikitudePlugin.setJSONObjectReceivedCallback(obj => {
+        console.log(this.global.sessionKey);
 
-        console.log("setJSONObjectReceivedCallback ..." + JSON.stringify(obj));
+
+        console.log(" MAP RESOURCE : setJSONObjectReceivedCallback ..." + JSON.stringify(obj));
         // this an example of how to receive a call from a function in the Wikitude SDK (Wikitude SDK --> Ionic)
         if (obj["action"]) {
           switch (obj["action"]) {
@@ -68,22 +81,94 @@ export class MyApp {
 
               break;
             case "save_current_instant_target":
-              (<any>window).resolveLocalFileSystemURL(cordova.file.externalDataDirectory, function(fileSystem) {
-                fileSystem.getDirectory('augmentations/', {
-                  create: true,
-                  exclusive: false
-                }, function(dirEntry) {
-                  dirEntry.getFile(obj["name"] + ".json", {
-                    create: true,
-                    exclusive: false
-                  }, function(fileEntry) {
+              console.log("in save method");
+              console.log(cordova.file.externalDataDirectory);
+
+              window.resolveLocalFileSystemURL(cordova.file.externalDataDirectory, function(fs) {
+
+                console.log('file system open: ' + JSON.stringify(fs));
+                fs.getFile("SavedAugmentations.json",
+                  { create: true, exclusive: false },
+                  function(fileEntry) {
                     fileEntry.createWriter(function(writer) {
                       writer.write(obj["augmentations"]);
-                    }, null);
-                  }, null);
-                }, null);
-              },null);
-              WikitudePlugin.callJavaScript("World.saveCurrentInstantTargetToUrl(\"" + cordova.file.externalDataDirectory + 'targets/' + obj["name"] + ".wto" + "\");")
+                    }, console.log("couldnt create writer"));
+                  }, console.log("error writing file"));
+
+              }, console.log("error loading fs"));
+              // /    this.db.list('armodel').push(obj["augmentations"]);
+
+              // writing to firebase DB
+              console.log("sesh key from save method " + this.global.sessionKey)
+              var ref = firebase.database().ref('/ARSessions/');
+              this.ref.child(this.global.sessionKey).set(obj["augmentations"]);
+
+              WikitudePlugin.callJavaScript("World.saveCurrentInstantTargetToUrl(\"" + cordova.file.dataDirectory + "SavedInstantTarget.wto" + "\");")
+              //WikitudePlugin.callJavaScript("World.saveCurrentInstantTargetToUrl(\"" + cordova.file.externalDataDirectory + 'targets/' + obj["name"] + ".wto" + "\");")
+              break;
+            case "load_existing_instant_target":
+              console.log("in load method");
+              // LOAD from DB
+              var ref = firebase.database().ref('/ARSessions/' + this.global.sessionKey);
+
+              var dbres = {} ;
+              var key = this.global.sessionKey;
+              this.ref.on('value', snapshot => {
+              //  this.dbResult = snapshot.val();
+              dbres = snapshot.val();
+              });
+              // ar target loaded from db
+              console.log(" ENTIRE RESULT from  DB: " + JSON.stringify(dbres));
+          //    console.log(" SESSION RESULT from DB: " + JSON.stringify(this.dbResult[this.global.sessionKey]));
+            writeToFile();
+
+      //        WikitudePlugin.callJavaScript("World.saveCurrentInstantTargetToUrl(\"" + cordova.file.dataDirectory + "SavedInstantTarget.wto" + "\");")
+
+              // window.resolveLocalFileSystemURL(cordova.file.externalDataDirectory, function(fs) {
+              //
+              //   fs.getDirectory('augmentations/', {
+              //     create: true,
+              //     exclusive: false
+              //   },
+              //     function(dirEntry) {
+              //       dirEntry.getFile(obj["name"] + ".json",
+              //         {
+              //           create: true,
+              //           exclusive: false
+              //         },
+              //         function(fileEntry) {
+              //           fileEntry.createWriter(function(writer) {
+              //             writer.write(obj["augmentations"]);
+              //             console.log("success on writing!");
+              //           }, console.log("couldnt create writer"));
+              //         }, console.log("error writing file"));
+              //     }, console.log("error loading fs"));
+              // }, console.log("error loading fs"));
+
+              // save db read to file
+        //      WikitudePlugin.callJavaScript("World.saveCurrentInstantTargetToUrl(\"" + cordova.file.externalDataDirectory + "SavedInstantTarget.wto" + "\");")
+
+              // console.log("loading instant target wiki plugin...");
+              // WikitudePlugin.callJavaScript("World.loadExistingInstantTargetFromUrl(\"" + cordova.file.externalDataDirectory + 'targets/' + obj["name"] + ".wto" + "\");")
+              //
+              // //load file from local storage
+              window.resolveLocalFileSystemURL(cordova.file.externalDataDirectory, function(fileSystem) {
+                fileSystem.getFile("SavedAugmentations.json", null, function(fileEntry) {
+                  fileEntry.file(function(file) {
+                    var reader = new FileReader();
+                    reader.onloadend = function() {
+                      console.log(" FILE READ AFTER WIRITNG TO FILE FROM DB: " + this.result);
+                      //              console.log("Successful file  db: " + this.dbResult);
+
+
+                      // /    displayFileData(fileEntry.fullPath + ": " + this.result);
+                      //          this.db.list('armodel').push(obj["augmentations"]);
+                      WikitudePlugin.callJavaScript("World.loadExistingInstantTargetFromUrl(\"" + cordova.file.dataDirectory + "SavedInstantTarget.wto" + "\"," + this.result + ");");
+                    };
+                    reader.readAsText(file);
+                  }, console.log("err"));
+                }, console.log("err"));
+              }, console.log("err"));
               break;
             default:
               console.warn("action not handled => ", obj);
@@ -106,6 +191,26 @@ export class MyApp {
         console.log("Something went wrong");
       }
 
+      function writeToFile(){
+        //write what is in DB to file
+        window.resolveLocalFileSystemURL(cordova.file.externalDataDirectory, function(fs) {
+          var dbres = {} ;
+          var key = this.sessionKey;
+
+          console.log('file system open: ' + JSON.stringify(fs));
+          fs.getFile("SavedAugmentations.json",
+            { create: true, exclusive: false },
+            function(fileEntry) {
+              fileEntry.createWriter(function(writer) {
+                // writer.write(this.dbResult[this.global.sessionKey]);
+
+                writer.write(dbres[key]);
+                  console.log("WRITING DB RESULT TO FILE: " + dbres[key]);
+              }, console.log("couldnt create writer"));
+            }, console.log("error writing file"));
+
+        }, console.log("error loading fs"));
+      }
 
       // Just as an example: set the location within the Wikitude SDK, if you need this (You can get the geo coordinates by using ionic native
       // GeoLocation plugin: http://ionicframework.com/docs/v2/native/geolocation/
@@ -121,4 +226,7 @@ export class MyApp {
 
     });
   }
+
+
+
 }
