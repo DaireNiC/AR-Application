@@ -8,6 +8,8 @@ import { ContactPage } from '../pages/contact/contact';
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
 import { ARView } from '../pages/ar-view/ar-view';
+import { CreateSession } from '../pages/create-session/create-session';
+ import { ModalPage } from '../pages/modal/modal';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -17,6 +19,7 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { FIREBASE_CONFIG } from './firebase.credentials';
 import { SingletonService } from '../services/SingletonService';
 import { GlobalProvider } from '../providers/global/global';
+
 @NgModule({
   declarations: [
     MyApp,
@@ -24,7 +27,10 @@ import { GlobalProvider } from '../providers/global/global';
     ContactPage,
     HomePage,
     TabsPage,
-    ARView
+    ARView,
+    CreateSession,
+    ModalPage
+
   ],
   imports: [
     BrowserModule,
@@ -39,7 +45,10 @@ import { GlobalProvider } from '../providers/global/global';
     ContactPage,
     HomePage,
     TabsPage,
-    ARView
+    ARView,
+    ModalPage,
+
+    CreateSession
   ],
   providers: [
     StatusBar,

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { ARView } from '../ar-view/ar-view';
+import { CreateSession} from '../create-session/create-session';
 import { AlertController } from 'ionic-angular';
 import * as firebase from 'Firebase';
 import { SingletonService } from '../../services/SingletonService';
@@ -49,6 +50,10 @@ export class HomePage {
     this.navCtrl.push(ARView);
   }
 
+  createSession() {
+    // navigate to create session page
+    this.navCtrl.push(CreateSession);
+  }
   loadSession() {
     var sessionInput = this.data.roomname;
     for(var session in this.sessions){

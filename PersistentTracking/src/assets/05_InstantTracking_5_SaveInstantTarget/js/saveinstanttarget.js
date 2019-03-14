@@ -19,11 +19,11 @@ AR.context.on2FingerGestureStarted = function() {
 var World = {
     drawables: [],
     modelPaths: [
-        "assets/models/building_04.wt3",
-        "assets/models/couch.wt3",
-        "assets/models/officechair.wt3",
-        "assets/models/table.wt3",
-        "assets/models/trainer.wt3"
+        "assets/models/model.wt3",
+        // "assets/models/couch.wt3",
+        // "assets/models/officechair.wt3",
+        // "assets/models/table.wt3",
+        // "assets/models/trainer.wt3"
     ],
     /*
         RequestedModel is the index of the next model to be created. This is necessary because we have to wait one
@@ -40,6 +40,15 @@ var World = {
     init: function initFn() {
         this.showUserInstructions("Running without platform assisted tracking (ARKit or ARCore).");
         World.createOverlays();
+        World.setupModel();
+    },
+
+    setupModel: function setupModelFn() {
+      // downloads the model used in AR scene selected from DB
+      console.log("loading initial ")
+        AR.platform.sendJSONObject({
+            action: "load_existing_instant_target"
+        });
     },
 
     createOverlays: function createOverlaysFn() {
@@ -316,7 +325,7 @@ var World = {
             console.log(url);
             this.tracker.loadExistingInstantTarget(mapResource, function() {
 
-            
+
                 World.instantTrackable.drawables.removeCamDrawable(World.drawables);
                 World.drawables.forEach(function(drawable) {
                     drawable.destroy();

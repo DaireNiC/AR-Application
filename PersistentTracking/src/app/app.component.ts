@@ -126,8 +126,24 @@ export class MyApp {
               // display the result for this session from db
               console.log(" SESSION RESULT from DB: " + JSON.stringify(dbres[key]));
 
-              //write the loaded result to a file
-              writeToFile(dbres, key).then(response => {
+            //  var obj = JSON.parse(dbres[key]);
+          /*    JSON modelUri = (obj[0]["uri"]);
+
+              // read from the db the file using path name
+              // LOAD from DB
+              var ref = firebase.database().ref('/ARModels/' + modelUri);
+              var model = "";
+              // getting the latest data from the db
+              this.ref.on('value', snapshot => {
+                 model = snapshot.val();
+              });
+
+              // get name of model and load and save to device
+              //check the github for people who have saved similarly
+              writeToFile(model, key, "model.wt3");
+*/
+              //write the loaded result to augmentations file
+              writeToFile(dbres, key, "SavedAugmentations.json").then(response => {
                 window.resolveLocalFileSystemURL(cordova.file.externalDataDirectory, function(fileSystem) {
                   fileSystem.getFile("SavedAugmentations.json", null, function(fileEntry) {
                     fileEntry.file(function(file) {
@@ -168,24 +184,30 @@ export class MyApp {
         console.log("Something went wrong");
       }
 
-      async function writeToFile(dbres, key) {
+      async function writeToFile(dbres, key, filename) {
         //write what is in DB to fie
         //  var dbres = dbres;
         return window.resolveLocalFileSystemURL(cordova.file.externalDataDirectory, function(fs) {
 
           //  var key = this.sessionKey;
-          console.log("KEY: " + key);
+        //  console.log("KEY: " + key);
           console.log("RES: " + dbres);
 
           console.log('file system open: ' + JSON.stringify(fs));
-          fs.getFile("SavedAugmentations.json",
+          fs.getFile(filename,
             { create: true, exclusive: false },
             function(fileEntry) {
               fileEntry.createWriter(function(writer) {
                 // writer.write(this.dbResult[this.global.sessionKey]);
+                if(filename.includes(".json")){
+                      writer.write(dbres[key]);
+                            console.log("WRITING DB RESULT TO FILE: " + dbres[key]);
+                }
+                else{
+                      writer.write(dbres);
+                            console.log("WRITING DB RESULT TO FILE: " + dbres);
 
-                writer.write(dbres[key]);
-                console.log("WRITING DB RESULT TO FILE: " + dbres[key]);
+                }
               }, console.log("couldnt create writer"));
             }, console.log("error writing file"));
 
