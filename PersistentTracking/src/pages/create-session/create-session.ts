@@ -18,28 +18,23 @@ import { ModalPage } from '../modal/modal';
 
 export class CreateSession {
 
+  models = [{'name': 'lovely house', 'selected': false}, {'name': 'nice house', 'selected': false}];
+
   constructor(
     public popoverController: PopoverController
   ) { }
 
-   presentPopover(ev: any) {
-    const popover =  this.popoverController.create(ModalPage);
+
+  presentPopover(myEvent) {
+    let popover = this.popoverController.create(ModalPage, this.models);
+    popover.present({
+      ev: myEvent
+    });
     popover.onDidDismiss(data => {
-       console.log(data);
-     });
-    return popover.present();
-
-
-   // openModal() {
-   //  const modal  = this.modalController.create(ModalPage)
-   //
-   //   modal.present();
-
-    // modal.onDidDismiss().then((dataReturned) => {
-    //   if (dataReturned !== null) {
-    //     console.log('Modal Sent Data :', dataReturned);
-    //   }
-    // });
+      if (data != null) {
+        console.log(data);
+      }
+    });
 
 
   }

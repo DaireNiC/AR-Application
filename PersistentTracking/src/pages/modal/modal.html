@@ -11,5 +11,10 @@
 </ion-header>
 
 <ion-content>
-    <h1>Select a model</h1>
+    <ion-list>
+         <ion-item *ngFor="let m of models; let i = index" ion-item>
+            <ion-label>{{m.name}}</ion-label>
+            <ion-checkbox [(ngModel)]="m.selected" checked="m.selected" (click)="dismiss(m)"></ion-checkbox>
+         </ion-item>
+      </ion-list>
 </ion-content>
