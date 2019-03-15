@@ -31,17 +31,6 @@ export class HomePage {
     });
   }
 
-  // async presentAlertSessionJoinError() {
-  //   const alert = await this.alertController.create({
-  //     header: 'Could not join session',
-  //     subHeader: 'Subtitle',
-  //     message: 'Please ensure you have the correct session name and try again.',
-  //     buttons: ['OK']
-  //   });
-  //
-  //   await alert.present();
-  // }
-
 
   addSession() {
     // set the key to the room name
@@ -63,11 +52,6 @@ export class HomePage {
         this.navCtrl.push(ARView);
       }
     }
-
-    // else {
-    //   this.presentAlertSessionJoinError();
-    // }
-
 
   }
 

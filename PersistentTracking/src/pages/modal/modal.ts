@@ -6,8 +6,6 @@ import { ModalController, NavParams, ViewController, NavController} from 'ionic-
   templateUrl: 'modal.html'
 })
 
-
-
 export class ModalPage {
   // list of models retrieved from DB
   models = [];

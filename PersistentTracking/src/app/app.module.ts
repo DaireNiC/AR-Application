@@ -9,7 +9,7 @@ import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
 import { ARView } from '../pages/ar-view/ar-view';
 import { CreateSession } from '../pages/create-session/create-session';
- import { ModalPage } from '../pages/modal/modal';
+import { ModalPage } from '../pages/modal/modal';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -19,6 +19,8 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { FIREBASE_CONFIG } from './firebase.credentials';
 import { SingletonService } from '../services/SingletonService';
 import { GlobalProvider } from '../providers/global/global';
+import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer';
+import { File } from '@ionic-native/file/ngx';
 
 @NgModule({
   declarations: [
@@ -36,7 +38,8 @@ import { GlobalProvider } from '../providers/global/global';
     BrowserModule,
     IonicModule.forRoot(MyApp),
     AngularFireModule.initializeApp(FIREBASE_CONFIG),
-    AngularFireDatabaseModule
+    AngularFireDatabaseModule,
+
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -47,15 +50,17 @@ import { GlobalProvider } from '../providers/global/global';
     TabsPage,
     ARView,
     ModalPage,
-
     CreateSession
   ],
   providers: [
     StatusBar,
     SplashScreen,
     SingletonService,
-    {provide: ErrorHandler, useClass: IonicErrorHandler},
-    GlobalProvider
+    { provide: ErrorHandler, useClass: IonicErrorHandler },
+    GlobalProvider,
+    FileTransfer,
+    FileTransferObject,
+    File
   ]
 })
-export class AppModule {}
+export class AppModule { }

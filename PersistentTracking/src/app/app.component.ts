@@ -126,22 +126,22 @@ export class MyApp {
               // display the result for this session from db
               console.log(" SESSION RESULT from DB: " + JSON.stringify(dbres[key]));
 
-            //  var obj = JSON.parse(dbres[key]);
-          /*    JSON modelUri = (obj[0]["uri"]);
-
-              // read from the db the file using path name
-              // LOAD from DB
-              var ref = firebase.database().ref('/ARModels/' + modelUri);
-              var model = "";
-              // getting the latest data from the db
-              this.ref.on('value', snapshot => {
-                 model = snapshot.val();
-              });
+             // JSON obj = JSON.parse(dbres[key]);
+             // var modelUri = (obj[0]["uri"]);
+             //
+             //  // read from the db the file using path name
+             //  // LOAD from DB
+             //  var ref = firebase.database().ref('/ARModels/' + modelUri);
+             //  var model = "";
+             //  // getting the latest data from the db
+             //  this.ref.on('value', snapshot => {
+             //     model = snapshot.val();
+             //  });
 
               // get name of model and load and save to device
               //check the github for people who have saved similarly
-              writeToFile(model, key, "model.wt3");
-*/
+          // /    writeToFile(model, key, "model.wt3");
+
               //write the loaded result to augmentations file
               writeToFile(dbres, key, "SavedAugmentations.json").then(response => {
                 window.resolveLocalFileSystemURL(cordova.file.externalDataDirectory, function(fileSystem) {
@@ -163,6 +163,12 @@ export class MyApp {
                 }, console.log("err"));
               });
               break;
+              case "get_model_uri":
+                console.log("in model method");
+              
+                WikitudePlugin.callJavaScript("World.loadModelFromUrl\"" + cordova.file.dataDirectory + "model.wt3" + "\","  + ");");
+
+                break;
             default:
               console.warn("action not handled => ", obj);
               break;
