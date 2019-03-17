@@ -1,0 +1,44 @@
+<ion-header>
+
+  <ion-navbar color="secondary">
+    <ion-title>Upload a Model</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content>
+
+  <div class="file-input-container">
+    <label>
+      <input type="file" ng2FileSelect [uploader]="uploader" multiple />
+      Add Files
+    </label>
+  </div>
+
+  <ion-card *ngFor="let file of files | async">
+    <ion-card-header>
+      {{ file.created | date:'medium' }}
+    </ion-card-header>
+
+    <ion-card-content>
+
+      <button ion-button block icon-left outline (click)="viewFile(file.url)">
+        <ion-icon name="eye"></ion-icon>
+        {{ file.fullPath }}
+      </button>
+
+      <button ion-button block outline icon-left color="danger" (click)="deleteFile(file)">
+        <ion-icon name="trash"></ion-icon> Delete
+      </button>
+
+    </ion-card-content>
+
+  </ion-card>
+
+  <ion-fab right bottom>
+    <button ion-fab color="primary" (click)="addFile()">
+      <ion-icon name="cloud-upload"></ion-icon>
+    </button>
+  </ion-fab>
+
+</ion-content>
