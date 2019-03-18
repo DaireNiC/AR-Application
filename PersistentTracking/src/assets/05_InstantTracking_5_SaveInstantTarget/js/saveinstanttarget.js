@@ -20,11 +20,11 @@ var World = {
 
   drawables: [],
   modelPaths: [
-    "assets/models/model.wt3",
-    "assets/models/couch.wt3",
-    "assets/models/officechair.wt3",
-    "assets/models/table.wt3",
-    "assets/models/trainer.wt3"
+    // "assets/models/model.wt3",
+     "assets/models/couch.wt3",
+    // "assets/models/officechair.wt3",
+    // "assets/models/table.wt3",
+    // "assets/models/trainer.wt3"
   ],
   /*
       RequestedModel is the index of the next model to be created. This is necessary because we have to wait one
@@ -45,7 +45,7 @@ var World = {
     this.showUserInstructions("Running without platform assisted tracking (ARKit or ARCore).");
 
     World.createOverlays();
-      World.setupModel();
+  //    World.setupModel();
 
   },
 
@@ -53,7 +53,7 @@ var World = {
 
   setupModel: function setupModelFn() {
     // // downloads the model used in AR scene selected from DB
-    console.log("loading model uri ")
+    console.log("loading model uri from savetargetsjs... ")
       AR.platform.sendJSONObject({
           action: "get_model_uri"
       });
@@ -197,6 +197,8 @@ var World = {
   },
 
   addModel: function addModelFn(pathIndex, xpos, ypos) {
+        World.setupModel();
+
     if (World.isTracking()) {
       var modelIndex = rotationValues.length;
       World.addModelValues();
@@ -260,7 +262,7 @@ var World = {
         },
         onError: World.onError
       });
-
+console.log("model at the end of processing is : " + JSON.stringify(model));
       allCurrentModels.push(model);
       World.lastAddedModel = model;
       this.instantTrackable.drawables.addCamDrawable(model);
@@ -284,9 +286,9 @@ var World = {
   },
   // /* Called from platform specific part of the sample. */
   loadModelFromUrl: function loadModelFromUrlFn(url) {
-    console.log("in the load model  ");
+    console.log("in the load model on savejs, url recieved fis:  " + url);
     World.modelPaths[0] = url;
-    console.log(url);
+    console.log("world.modelpaths : " + World.modelPaths[0]);
   },
 
   resetAllModelValues: function resetAllModelValuesFn() {

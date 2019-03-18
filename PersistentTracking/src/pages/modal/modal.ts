@@ -17,6 +17,7 @@ export class ModalPage {
   }
 	 dismiss(p) {
      console.log(p);
+     
 	   this.viewCtrl.dismiss(p);
 	 }
 }

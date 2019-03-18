@@ -28,7 +28,7 @@ export class MyApp {
       statusBar.styleDefault();
 
       splashScreen.hide();
-      console.log();
+      console.log(" ");
 
 
       /** Enter your Wikitude (trial) License Key here. You can register and download your free license key here: http://www.wikitude.com/developer/licenses */
@@ -107,6 +107,7 @@ export class MyApp {
               //WikitudePlugin.callJavaScript("World.saveCurrentInstantTargetToUrl(\"" + cordova.file.externalDataDirectory + 'targets/' + obj["name"] + ".wto" + "\");")
               break;
             case "load_existing_instant_target":
+
               console.log("in load method");
 
               // LOAD from DB
@@ -164,9 +165,9 @@ export class MyApp {
               });
               break;
               case "get_model_uri":
-                console.log("in model method");
-              
-                WikitudePlugin.callJavaScript("World.loadModelFromUrl\"" + cordova.file.dataDirectory + "model.wt3" + "\","  + ");");
+                console.log("in model method in app component");
+
+                WikitudePlugin.callJavaScript("World.loadModelFromUrl(\"" + cordova.file.dataDirectory + "model.wt3"+ "\""  + ");" );
 
                 break;
             default:

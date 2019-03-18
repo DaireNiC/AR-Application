@@ -20,8 +20,8 @@ declare var cordova: any;
 
 export class CreateSession {
 
-  models = [{ 'name': 'lovely house', 'selected': false, url: 'https://firebasestorage.googleapis.com/v0/b/architect-61cc8.appspot.com/o/model.wt3?alt=media&token=f36dc432-9895-40c1-af97-42f0c1112c29' }, { 'name': 'nice house', 'selected': false , url: 'https://firebasestorage.googleapis.com/v0/b/architect-61cc8.appspot.com/o/house.wt3?alt=media&token=e8308290-f365-4376-a8a5-173d4b47a57b'}];
-  url = "";
+  models = [{ 'name': 'Apartment', 'selected': false, url: 'https://firebasestorage.googleapis.com/v0/b/architect-61cc8.appspot.com/o/model.wt3?alt=media&token=f36dc432-9895-40c1-af97-42f0c1112c29', "img": "assets/img/apartment.png" }, { 'name': 'House', 'selected': false , url: 'https://firebasestorage.googleapis.com/v0/b/architect-61cc8.appspot.com/o/house.wt3?alt=media&token=e8308290-f365-4376-a8a5-173d4b47a57b', "img": "assets/img/house.png" }];
+//  url = "";
 
 
   constructor(public popoverController: PopoverController, public transfer: FileTransfer, public file: File, public navCtrl: NavController) {
@@ -51,9 +51,9 @@ export class CreateSession {
   }
 
   download(url) {
-    console.log("in download method " + url);
+    console.log("in download method plus url is: " + url);
     const fileTransfer: FileTransferObject = this.transfer.create();
-    fileTransfer.download(url, cordova.file.externalDataDirectory + 'model.wt3').then((entry) => {
+    fileTransfer.download(url, cordova.file.dataDirectory + 'model.wt3').then((entry) => {
       console.log('download complete: ' + entry.toURL());
     }, (error) => {
       // handle error

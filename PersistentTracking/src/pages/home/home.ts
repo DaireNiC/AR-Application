@@ -35,6 +35,9 @@ export class HomePage {
   addSession() {
     // set the key to the room name
     this.ref.child(this.data.new_roomname).set("");
+    //save the key
+    this.global.sessionKey=this.data.new_roomname;
+    this.navCtrl.push(ARView);
     // navigate to AR view
     this.navCtrl.push(ARView);
   }
@@ -50,6 +53,7 @@ export class HomePage {
         console.log("match!");
         this.global.sessionKey=sessionInput;
         this.navCtrl.push(ARView);
+
       }
     }
 
