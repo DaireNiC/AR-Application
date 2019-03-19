@@ -4,6 +4,11 @@ import { Modal, PopoverController, ModalOptions } from 'ionic-angular';
 import { ModalPage } from '../modal/modal';
 import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer';
 import { File } from '@ionic-native/file/ngx';
+import * as firebase from 'Firebase';
+import { AngularFireDatabase } from 'angularfire2/database';
+import { GlobalProvider } from "../../providers/global/global";
+
+
 declare var cordova: any;
 /**
  * Generated class for the CreateSessionPage page.
@@ -20,11 +25,25 @@ declare var cordova: any;
 
 export class CreateSession {
 
-  models = [{ 'name': 'Apartment', 'selected': false, url: 'https://firebasestorage.googleapis.com/v0/b/architect-61cc8.appspot.com/o/model.wt3?alt=media&token=f36dc432-9895-40c1-af97-42f0c1112c29', "img": "assets/img/apartment.png" }, { 'name': 'House', 'selected': false , url: 'https://firebasestorage.googleapis.com/v0/b/architect-61cc8.appspot.com/o/house.wt3?alt=media&token=e8308290-f365-4376-a8a5-173d4b47a57b', "img": "assets/img/house.png" }];
-//  url = "";
+  //  models = [{ 'name': 'Apartment', 'selected': false, url: 'https://firebasestorage.googleapis.com/v0/b/architect-61cc8.appspot.com/o/model.wt3?alt=media&token=f36dc432-9895-40c1-af97-42f0c1112c29', "img": "assets/img/apartment.png" }, { 'name': 'House', 'selected': false , url: 'https://firebasestorage.googleapis.com/v0/b/architect-61cc8.appspot.com/o/house.wt3?alt=media&token=e8308290-f365-4376-a8a5-173d4b47a57b', "img": "assets/img/house.png" }];
+  //  url = "";s =   files: Observable<any[]>;
+  models = [];
+  ref = firebase.database().ref('/Models/');
 
 
-  constructor(public popoverController: PopoverController, public transfer: FileTransfer, public file: File, public navCtrl: NavController) {
+  constructor( public global: GlobalProvider, public popoverController: PopoverController, public transfer: FileTransfer, public file: File, public navCtrl: NavController, private db: AngularFireDatabase) {
+
+    //update models whenever there is a change in the DB
+    //update sessions when a new value is added to db
+    // this.ref.on('value', snapshot => {
+    //   this.models = snapshot.val();
+    // });
+    // console.log(JSON.stringify(this.models));
+    this.ref.on('value', snapshot => {
+
+      var result = snapshot.val();
+      this.models = Object.values(result);
+    });
 
   }
 
@@ -32,6 +51,7 @@ export class CreateSession {
 
 
   presentPopover(myEvent) {
+    console.log(JSON.stringify(this.models));
     let popover = this.popoverController.create(ModalPage, this.models);
     popover.present({
       ev: myEvent
@@ -52,6 +72,7 @@ export class CreateSession {
 
   download(url) {
     console.log("in download method plus url is: " + url);
+      this.global.downloadURL = url; // save the url for use in other pages e.g when in the load ar scnene method
     const fileTransfer: FileTransferObject = this.transfer.create();
     fileTransfer.download(url, cordova.file.dataDirectory + 'model.wt3').then((entry) => {
       console.log('download complete: ' + entry.toURL());

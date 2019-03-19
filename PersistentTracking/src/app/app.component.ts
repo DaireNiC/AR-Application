@@ -6,6 +6,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { SingletonService } from '../services/SingletonService';
 import * as firebase from 'Firebase';
+import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer';
+import { File } from '@ionic-native/file/ngx';
 import { TabsPage } from '../pages/tabs/tabs';
 import { GlobalProvider } from "../providers/global/global";
 declare let window: any;
@@ -15,12 +17,14 @@ declare let cordova: any;
 })
 export class MyApp {
   rootPage: any = TabsPage;
+
   sessionKey = '';
   dbResult = [];
   ref = firebase.database().ref('/ARSessions/');
 
-  constructor(public global: GlobalProvider, platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, public db: AngularFireDatabase, public singleton: SingletonService) {
+  constructor(public global: GlobalProvider, public transfer: FileTransfer,public file: File, platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, public db: AngularFireDatabase, public singleton: SingletonService) {
     this.sessionKey = this.global.sessionKey;
+
     platform.ready().then(() => {
       window.addEventListener('filePluginIsReady', function() { console.log('File plugin is ready'); }, false);
       // Okay, so the platform is ready and our plugins are available.
@@ -101,8 +105,20 @@ export class MyApp {
               // writing to firebase DB
               console.log("sesh key from save method " + this.global.sessionKey)
               var ref = firebase.database().ref('/ARSessions/');
-              this.ref.child(this.global.sessionKey).set(obj["augmentations"]);
-              +
+              this.ref.child(`${this.global.sessionKey}/augmentations`).set(obj["augmentations"]);
+
+
+                            // if this is the first time saving the augmentation need to save download url retrieved earlier from model selection
+              if (this.global.downloadURL){
+                // save it to the augmentation Object
+                var  downloadURL = { "dowloadURL" : this.global.downloadURL };
+            //    var augmentations =   obj["augmentations"];
+              //  augmentations.push(downloadURL);
+              //  console.log( augmentations);
+                this.ref.child(this.global.sessionKey).update(downloadURL);
+              }
+
+
                 WikitudePlugin.callJavaScript("World.saveCurrentInstantTargetToUrl(\"" + cordova.file.dataDirectory + "SavedInstantTarget.wto" + "\");")
               //WikitudePlugin.callJavaScript("World.saveCurrentInstantTargetToUrl(\"" + cordova.file.externalDataDirectory + 'targets/' + obj["name"] + ".wto" + "\");")
               break;
@@ -116,6 +132,7 @@ export class MyApp {
               var dbres = {};
               var key = this.global.sessionKey;
 
+
               // getting the latest data from the db
               this.ref.on('value', snapshot => {
                 dbres = snapshot.val();
@@ -127,24 +144,35 @@ export class MyApp {
               // display the result for this session from db
               console.log(" SESSION RESULT from DB: " + JSON.stringify(dbres[key]));
 
-             // JSON obj = JSON.parse(dbres[key]);
-             // var modelUri = (obj[0]["uri"]);
-             //
-             //  // read from the db the file using path name
-             //  // LOAD from DB
-             //  var ref = firebase.database().ref('/ARModels/' + modelUri);
-             //  var model = "";
-             //  // getting the latest data from the db
-             //  this.ref.on('value', snapshot => {
-             //     model = snapshot.val();
-             //  });
+
+
+              // write the model locally
+              // get ref to download url
+
+
+
+
+
+              // JSON obj = JSON.parse(dbres[key]);
+              // var modelUri = (obj[0]["uri"]);
+              //
+              //  // read from the db the file using path name
+              //  // LOAD from DB
+              //  var ref = firebase.database().ref('/ARModels/' + modelUri);
+              //  var model = "";
+              //  // getting the latest data from the db
+              //  this.ref.on('value', snapshot => {
+              //     model = snapshot.val();
+              //  });
 
               // get name of model and load and save to device
               //check the github for people who have saved similarly
-          // /    writeToFile(model, key, "model.wt3");
+              // /    writeToFile(model, key, "model.wt3");
 
               //write the loaded result to augmentations file
-              writeToFile(dbres, key, "SavedAugmentations.json").then(response => {
+              var downloadURL = dbres[key]["dowloadURL"] ;
+              console.log(downloadURL);
+                download(downloadURL, this.transfer).then(writeToFile(dbres, key, "SavedAugmentations.json")).then(response => {
                 window.resolveLocalFileSystemURL(cordova.file.externalDataDirectory, function(fileSystem) {
                   fileSystem.getFile("SavedAugmentations.json", null, function(fileEntry) {
                     fileEntry.file(function(file) {
@@ -164,12 +192,12 @@ export class MyApp {
                 }, console.log("err"));
               });
               break;
-              case "get_model_uri":
-                console.log("in model method in app component");
+            case "get_model_uri":
+              console.log("in model method in app component");
 
-                WikitudePlugin.callJavaScript("World.loadModelFromUrl(\"" + cordova.file.dataDirectory + "model.wt3"+ "\""  + ");" );
+              WikitudePlugin.callJavaScript("World.loadModelFromUrl(\"" + cordova.file.dataDirectory + "model.wt3" + "\"" + ");");
 
-                break;
+              break;
             default:
               console.warn("action not handled => ", obj);
               break;
@@ -191,13 +219,26 @@ export class MyApp {
         console.log("Something went wrong");
       }
 
+
+      async function download(url, transfer) {
+        console.log("in download method plus url is: " + url);
+        const fileTransfer: FileTransferObject = transfer.create();
+        fileTransfer.download(url, cordova.file.dataDirectory + 'model.wt3').then((entry) => {
+          console.log('download complete: ' + entry.toURL());
+        }, (error) => {
+          // handle error
+          console.log("dis is an error to do with your file download");
+        });
+      }
+
+
       async function writeToFile(dbres, key, filename) {
         //write what is in DB to fie
         //  var dbres = dbres;
         return window.resolveLocalFileSystemURL(cordova.file.externalDataDirectory, function(fs) {
 
           //  var key = this.sessionKey;
-        //  console.log("KEY: " + key);
+          //  console.log("KEY: " + key);
           console.log("RES: " + dbres);
 
           console.log('file system open: ' + JSON.stringify(fs));
@@ -206,13 +247,13 @@ export class MyApp {
             function(fileEntry) {
               fileEntry.createWriter(function(writer) {
                 // writer.write(this.dbResult[this.global.sessionKey]);
-                if(filename.includes(".json")){
-                      writer.write(dbres[key]);
-                            console.log("WRITING DB RESULT TO FILE: " + dbres[key]);
+                if (filename.includes(".json")) {
+                  writer.write(dbres[key]["augmentations"]);
+                  console.log("WRITING DB RESULT TO FILE: " + dbres[key]);
                 }
-                else{
-                      writer.write(dbres);
-                            console.log("WRITING DB RESULT TO FILE: " + dbres);
+                else {
+                  writer.write(dbres);
+                  console.log("WRITING DB RESULT TO FILE: " + dbres);
 
                 }
               }, console.log("couldnt create writer"));

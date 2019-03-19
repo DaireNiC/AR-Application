@@ -10,5 +10,6 @@ import { Injectable } from '@angular/core';
 export class GlobalProvider {
 
 public sessionKey: string;
+public downloadURL: string;
 
 }

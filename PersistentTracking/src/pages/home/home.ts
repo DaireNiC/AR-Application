@@ -23,12 +23,13 @@ export class HomePage {
 
   constructor( public global: GlobalProvider, public alertController: AlertController, public navCtrl: NavController, public db: AngularFireDatabase, public singleton:SingletonService) {
 
-  //  this.sessionKey = singleton.setSessionKey("testerkeyyay");
 
     //update sessions when a new value is added to db
     this.ref.on('value', snapshot => {
       this.sessions = snapshot.val();
     });
+
+
   }
 
 

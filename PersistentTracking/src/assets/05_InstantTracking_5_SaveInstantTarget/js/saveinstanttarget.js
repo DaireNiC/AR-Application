@@ -57,6 +57,8 @@ var World = {
       AR.platform.sendJSONObject({
           action: "get_model_uri"
       });
+
+      World.loadExistingInstantTarget();
   },
 
   createOverlays: function createOverlaysFn() {
