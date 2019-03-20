@@ -43,6 +43,9 @@ export class CreateSession {
 
       var result = snapshot.val();
       this.models = Object.values(result);
+      // const values = Object.keys(data).map(key => data[key]);
+      //
+      // const commaJoinedValues = values.join(",");
     });
 
   }
@@ -72,7 +75,7 @@ export class CreateSession {
 
   download(url) {
     console.log("in download method plus url is: " + url);
-      this.global.downloadURL = url; // save the url for use in other pages e.g when in the load ar scnene method
+    this.global.downloadURL = url; // save the url for use in other pages e.g when in the load ar scnene method
     const fileTransfer: FileTransferObject = this.transfer.create();
     fileTransfer.download(url, cordova.file.dataDirectory + 'model.wt3').then((entry) => {
       console.log('download complete: ' + entry.toURL());

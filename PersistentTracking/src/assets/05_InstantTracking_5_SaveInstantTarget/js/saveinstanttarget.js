@@ -156,18 +156,7 @@ var World = {
     document.getElementById("tracking-model-button-clock").addEventListener('touchstart', function( /*ev*/ ) {
       World.requestedModel = 0;
     }, false);
-    document.getElementById("tracking-model-button-couch").addEventListener('touchstart', function( /*ev*/ ) {
-      World.requestedModel = 1;
-    }, false);
-    document.getElementById("tracking-model-button-chair").addEventListener('touchstart', function( /*ev*/ ) {
-      World.requestedModel = 2;
-    }, false);
-    document.getElementById("tracking-model-button-table").addEventListener('touchstart', function( /*ev*/ ) {
-      World.requestedModel = 3;
-    }, false);
-    document.getElementById("tracking-model-button-trainer").addEventListener('touchstart', function( /*ev*/ ) {
-      World.requestedModel = 4;
-    }, false);
+    
   },
 
   updatePlaneDrag: function updatePlaneDragFn(xPos, yPos) {

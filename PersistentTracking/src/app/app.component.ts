@@ -111,7 +111,7 @@ export class MyApp {
                             // if this is the first time saving the augmentation need to save download url retrieved earlier from model selection
               if (this.global.downloadURL){
                 // save it to the augmentation Object
-                var  downloadURL = { "dowloadURL" : this.global.downloadURL };
+                let  downloadURL = { "dowloadURL" : this.global.downloadURL };
             //    var augmentations =   obj["augmentations"];
               //  augmentations.push(downloadURL);
               //  console.log( augmentations);
@@ -170,9 +170,12 @@ export class MyApp {
               // /    writeToFile(model, key, "model.wt3");
 
               //write the loaded result to augmentations file
-              var downloadURL = dbres[key]["dowloadURL"] ;
+              let downloadURL = dbres[key]["dowloadURL"] ;
               console.log(downloadURL);
-                download(downloadURL, this.transfer).then(writeToFile(dbres, key, "SavedAugmentations.json")).then(response => {
+
+              download(downloadURL, this.transfer);
+
+              writeToFile(dbres, key, "SavedAugmentations.json").then(response => {
                 window.resolveLocalFileSystemURL(cordova.file.externalDataDirectory, function(fileSystem) {
                   fileSystem.getFile("SavedAugmentations.json", null, function(fileEntry) {
                     fileEntry.file(function(file) {
