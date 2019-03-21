@@ -1,3 +1,36 @@
 page-home {
+  header-style {
+     background-color: #F4D35E;
+  }
 
+  ion-title{
+    text-align: center;
+  }
+
+
+  .top-img {
+    text-align: center;
+  }
+
+  .bottom-img {
+    text-align: right;
+    padding-top: 20px;
+    padding-bottom: 1px;
+  }
+
+  ion-card-title {
+    text-align: center;
+  }
+
+  .bg-style {
+    // /    background-image: url("../assets/imgs/blackground_smol.png");
+    // background-size: auto;
+    // background-repeat: no-repeat;
+    // background-position: bottom right;
+    // text-align: right;
+    //    background-color: #083d77;
+  }
+  .cancel-button-css{
+
+  }
 }

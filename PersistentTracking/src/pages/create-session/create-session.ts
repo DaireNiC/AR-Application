@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ARView } from '../ar-view/ar-view';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Modal, PopoverController, ModalOptions } from 'ionic-angular';
 import { ModalPage } from '../modal/modal';
@@ -29,6 +30,7 @@ export class CreateSession {
   //  url = "";s =   files: Observable<any[]>;
   models = [];
   ref = firebase.database().ref('/Models/');
+  data = { roomname: '', new_roomname: '' };
 
 
   constructor( public global: GlobalProvider, public popoverController: PopoverController, public transfer: FileTransfer, public file: File, public navCtrl: NavController, private db: AngularFireDatabase) {
@@ -37,6 +39,7 @@ export class CreateSession {
     //update sessions when a new value is added to db
     // this.ref.on('value', snapshot => {
     //   this.models = snapshot.val();
+
     // });
     // console.log(JSON.stringify(this.models));
     this.ref.on('value', snapshot => {
@@ -49,8 +52,6 @@ export class CreateSession {
     });
 
   }
-
-
 
 
   presentPopover(myEvent) {
@@ -72,6 +73,21 @@ export class CreateSession {
     });
 
   }
+
+  addSession() {
+    // set the key to the room name
+
+    if (this.data.new_roomname != ''){
+      this.ref.child(this.data.new_roomname).set("");
+      //save the key
+      this.global.sessionKey=this.data.new_roomname;
+      this.navCtrl.push(ARView);
+      // navigate to AR view
+      this.navCtrl.push(ARView);
+    }
+
+  }
+
 
   download(url) {
     console.log("in download method plus url is: " + url);

@@ -2,11 +2,13 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { ARView } from '../ar-view/ar-view';
-import { CreateSession} from '../create-session/create-session';
+import { CreateSession } from '../create-session/create-session';
 import { AlertController } from 'ionic-angular';
 import * as firebase from 'Firebase';
 import { SingletonService } from '../../services/SingletonService';
 import { GlobalProvider } from "../../providers/global/global";
+
+
 
 @Component({
   selector: 'page-home',
@@ -15,13 +17,13 @@ import { GlobalProvider } from "../../providers/global/global";
 
 export class HomePage {
   sessions = []
-  sessionKey ='';
+  sessionKey = '';
   data = { roomname: '', new_roomname: '' };
   //  ref = this.db.list('/ArSessions/');
 
   ref = firebase.database().ref('/ARSessions/');
 
-  constructor( public global: GlobalProvider, public alertController: AlertController, public navCtrl: NavController, public db: AngularFireDatabase, public singleton:SingletonService) {
+  constructor(private alertCtrl: AlertController, public global: GlobalProvider, public navCtrl: NavController, public db: AngularFireDatabase, public singleton: SingletonService) {
 
 
     //update sessions when a new value is added to db
@@ -32,44 +34,67 @@ export class HomePage {
 
   }
 
-
-  addSession() {
-    // set the key to the room name
-    this.ref.child(this.data.new_roomname).set("");
-    //save the key
-    this.global.sessionKey=this.data.new_roomname;
-    this.navCtrl.push(ARView);
-    // navigate to AR view
-    this.navCtrl.push(ARView);
+  showPrompt() {
+    const prompt = this.alertCtrl.create({
+      title: 'Load Session',
+      inputs: [
+        {
+          name: 'title',
+          placeholder: 'Client A'
+        },
+      ],
+      buttons: [
+        {
+          cssClass: 'cancel-button-css',
+          text: 'Cancel',
+          handler: data => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: 'Go',
+          handler: data => {
+            console.log(data);
+            this.data.roomname = data.title;
+            if (this.loadSession()){
+              console.log("such success");
+                this.navCtrl.push(ARView);
+            }else{
+              this.failLoadAlert();
+            }
+            console.log('Saved clicked');
+          }
+        }
+      ]
+    });
+    prompt.present();
   }
+
+  failLoadAlert() {
+      const alert = this.alertCtrl.create({
+        title: 'Session not Found!',
+        subTitle: 'Please check your session name and try again.',
+        buttons: ['OK']
+      });
+      alert.present();
+    }
+
 
   createSession() {
     // navigate to create session page
     this.navCtrl.push(CreateSession);
   }
+
   loadSession() {
     var sessionInput = this.data.roomname;
-    for(var session in this.sessions){
-      if( session == sessionInput){
+    for (var session in this.sessions) {
+      if (session == sessionInput) {
         console.log("match!");
-        this.global.sessionKey=sessionInput;
-        this.navCtrl.push(ARView);
-
+        this.global.sessionKey = sessionInput;
+        return (true);
       }
     }
 
   }
 
 }
-
-export const snapshotToArray = snapshot => {
-  let returnArr = [];
-
-  snapshot.forEach(childSnapshot => {
-    let item = childSnapshot.key();
-  //  item.key = childSnapshot.key;
-    returnArr.push(item);
-  });
-
-  return returnArr;
-};

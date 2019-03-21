@@ -1,35 +1,41 @@
+
+<link href="https://fonts.googleapis.com/css?family=Sniglet" rel="stylesheet">
+
 <ion-header>
-  <ion-navbar>
-    <ion-title>ARchitect</ion-title>
-  </ion-navbar>
+  <!-- <ion-navbar class="header-style" >
+    <ion-title></ion-title>
+  </ion-navbar> -->
+
+  <ion-toolbar color="secondary" style="font-family: Sniglet;">
+       <ion-title>ARchitect</ion-title>
+   </ion-toolbar>
 </ion-header>
 
 
-<ion-content padding>
+<ion-content padding class="bg-style">
+  <div class="top-img">
+    <img src="assets/imgs/open-plane.png" />
+  </div>
+  <ion-card style="border-radius: 25px;">
 
-  <button ion-button full round color="primary" (click)="createSession()">Create Session</button>
+    <ion-card-header>
 
-  <form (ngSubmit)="addSession()">
-    <ion-list>
-      <ion-item>
-        <ion-label floating>Create a Session</ion-label>
-        <ion-input type="text" [(ngModel)]="data.new_roomname" name="roomname" required=""></ion-input>
-      </ion-item>
-      <ion-item>
-        <button ion-button full round color="secondary" type="submit">Add</button>
-      </ion-item>
-    </ion-list>
-  </form>
+      <ion-card-title> Start a Session! </ion-card-title>
+    </ion-card-header>
 
-  <form (ngSubmit)="loadSession()">
-    <ion-list>
-      <ion-item>
-        <ion-label floating>Load Session</ion-label>
-        <ion-input type="text" [(ngModel)]="data.roomname" name="roomname" required=""></ion-input>
-      </ion-item>
-      <ion-item>
-        <button ion-button full round color="secondary" type="submit">Load</button>
-      </ion-item>
-    </ion-list>
-  </form>
+    <ion-card-content>
+
+
+      <button ion-button full round color="primary" (click)="createSession()">Create Session</button>
+      <br>
+
+      <button ion-button full round color="secondary" (click)="showPrompt()">Load Session</button>
+
+    </ion-card-content>
+  </ion-card>
+
+  <div class="bottom-img">
+    <img src="assets/imgs/blackground_smol.png" />
+  </div>
+
 </ion-content>
