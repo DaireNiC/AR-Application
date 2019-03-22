@@ -13,6 +13,7 @@ export class TabsPage {
 
   tab1Root = HomePage;
   tab2Root = ARView;
+  tab3Root = ContactPage;
 
 
   constructor() {

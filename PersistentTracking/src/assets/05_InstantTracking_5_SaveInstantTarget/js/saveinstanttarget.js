@@ -45,7 +45,7 @@ var World = {
     this.showUserInstructions("Running without platform assisted tracking (ARKit or ARCore).");
 
     World.createOverlays();
-  //    World.setupModel();
+    //  World.setupModel();
 
   },
 
@@ -156,7 +156,7 @@ var World = {
     document.getElementById("tracking-model-button-clock").addEventListener('touchstart', function( /*ev*/ ) {
       World.requestedModel = 0;
     }, false);
-    
+
   },
 
   updatePlaneDrag: function updatePlaneDragFn(xPos, yPos) {
@@ -188,7 +188,8 @@ var World = {
   },
 
   addModel: function addModelFn(pathIndex, xpos, ypos) {
-        World.setupModel();
+
+    World.setupModel();
 
     if (World.isTracking()) {
       var modelIndex = rotationValues.length;

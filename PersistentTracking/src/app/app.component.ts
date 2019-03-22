@@ -203,7 +203,7 @@ export class MyApp {
               break;
             default:
               console.warn("action not handled => ", obj);
-              
+
               break;
           } // end switch
         } // end if (obj.action)
