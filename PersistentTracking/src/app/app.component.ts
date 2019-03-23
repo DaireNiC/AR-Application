@@ -32,7 +32,7 @@ export class MyApp {
       statusBar.styleDefault();
 
       splashScreen.hide();
-      console.log(" ");
+
 
 
       /** Enter your Wikitude (trial) License Key here. You can register and download your free license key here: http://www.wikitude.com/developer/licenses */
@@ -108,14 +108,12 @@ export class MyApp {
               this.ref.child(`${this.global.sessionKey}/augmentations`).set(obj["augmentations"]);
 
 
-                            // if this is the first time saving the augmentation need to save download url retrieved earlier from model selection
+            // if this is the first time saving the augmentation need to save download url retrieved earlier from model selection
               if (this.global.downloadURL){
                 // save it to the augmentation Object
                 let  downloadURL = { "dowloadURL" : this.global.downloadURL };
-            //    var augmentations =   obj["augmentations"];
-              //  augmentations.push(downloadURL);
-              //  console.log( augmentations);
                 this.ref.child(this.global.sessionKey).update(downloadURL);
+
               }
 
 
@@ -124,7 +122,9 @@ export class MyApp {
               break;
             case "load_existing_instant_target":
 
-              console.log("in load method");
+
+
+              console.log("in load method app componenet");
 
               // LOAD from DB
               var ref = firebase.database().ref('/ARSessions/' + this.global.sessionKey);
@@ -137,6 +137,8 @@ export class MyApp {
               this.ref.on('value', snapshot => {
                 dbres = snapshot.val();
               });
+              console.log("key is! --> " + key);
+                console.log("global key is! --> " +  this.global.sessionKey);
 
               //REsult loaded from the DB
               console.log(" ENTIRE RESULT from  DB: " + JSON.stringify(dbres));
@@ -171,7 +173,7 @@ export class MyApp {
 
               //write the loaded result to augmentations file
               let downloadURL = dbres[key]["dowloadURL"] ;
-              console.log(downloadURL);
+              console.log("found this download url and now aptemting to download" + downloadURL);
 
               download(downloadURL, this.transfer);
 
@@ -182,10 +184,10 @@ export class MyApp {
                       var reader = new FileReader();
                       reader.onloadend = function() {
                         console.log(" FILE READ \n AFTER WIRITNG TO FILE FROM DB: " + this.result);
-                        //              console.log("Successful file  db: " + this.dbResult);
+                              //        console.log("Successful file  db: " + this.dbResult);
 
 
-                        // /    displayFileData(fileEntry.fullPath + ": " + this.result);
+                        //  displayFileData(fileEntry.fullPath + ": " + this.result);
                         //          this.db.list('armodel').push(obj["augmentations"]);
                         WikitudePlugin.callJavaScript("World.loadExistingInstantTargetFromUrl(\"" + cordova.file.dataDirectory + "SavedInstantTarget.wto" + "\"," + this.result + ");");
                       };
@@ -198,7 +200,7 @@ export class MyApp {
             case "get_model_uri":
               console.log("in model method in app component");
 
-              WikitudePlugin.callJavaScript("World.loadModelFromUrl(\"" + cordova.file.dataDirectory + "model.wt3" + "\"" + ");");
+              WikitudePlugin.callJavaScript("World.loadModelFromUrl(\"" + cordova.file.dataDirectory + "model.wt3" +  "\");");
 
               break;
             default:
@@ -228,10 +230,10 @@ export class MyApp {
         console.log("in download method plus url is: " + url);
         const fileTransfer: FileTransferObject = transfer.create();
         fileTransfer.download(url, cordova.file.dataDirectory + 'model.wt3').then((entry) => {
-          console.log('download complete: ' + entry.toURL());
+          console.log(' SUCCESS download complete: ' + entry.toURL());
         }, (error) => {
           // handle error
-          console.log("dis is an error to do with your file download");
+          console.log("ERROR DOWNLOADING FILE");
         });
       }
 

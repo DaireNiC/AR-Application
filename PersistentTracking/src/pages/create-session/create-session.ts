@@ -29,11 +29,11 @@ export class CreateSession {
   //  models = [{ 'name': 'Apartment', 'selected': false, url: 'https://firebasestorage.googleapis.com/v0/b/architect-61cc8.appspot.com/o/model.wt3?alt=media&token=f36dc432-9895-40c1-af97-42f0c1112c29', "img": "assets/img/apartment.png" }, { 'name': 'House', 'selected': false , url: 'https://firebasestorage.googleapis.com/v0/b/architect-61cc8.appspot.com/o/house.wt3?alt=media&token=e8308290-f365-4376-a8a5-173d4b47a57b', "img": "assets/img/house.png" }];
   //  url = "";s =   files: Observable<any[]>;
   models = [];
-  ref = firebase.database().ref('/Models/');
+
   data = { roomname: '', new_roomname: '' };
 
 
-  constructor( public global: GlobalProvider, public popoverController: PopoverController, public transfer: FileTransfer, public file: File, public navCtrl: NavController, private db: AngularFireDatabase) {
+  constructor(public global: GlobalProvider, public popoverController: PopoverController, public transfer: FileTransfer, public file: File, public navCtrl: NavController, private db: AngularFireDatabase) {
 
     //update models whenever there is a change in the DB
     //update sessions when a new value is added to db
@@ -42,7 +42,8 @@ export class CreateSession {
 
     // });
     // console.log(JSON.stringify(this.models));
-    this.ref.on('value', snapshot => {
+    let ref = firebase.database().ref('/Models/');
+    ref.on('value', snapshot => {
 
       var result = snapshot.val();
       this.models = Object.values(result);
@@ -76,14 +77,14 @@ export class CreateSession {
 
   addSession() {
     // set the key to the room name
-
-    if (this.data.new_roomname != ''){
-      this.ref.child(this.data.new_roomname).set("");
+    let ref = firebase.database().ref('/ARSessions/');
+    if (this.data.new_roomname != '') {
+      ref.child(this.data.new_roomname).set("");
       //save the key
-      this.global.sessionKey=this.data.new_roomname;
+      this.global.sessionKey = this.data.new_roomname;
       this.navCtrl.push(ARView);
       // navigate to AR view
-      this.navCtrl.push(ARView);
+
     }
 
   }

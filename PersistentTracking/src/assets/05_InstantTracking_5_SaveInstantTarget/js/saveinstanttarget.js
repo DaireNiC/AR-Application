@@ -21,7 +21,7 @@ var World = {
   drawables: [],
   modelPaths: [
     // "assets/models/model.wt3",
-     "assets/models/couch.wt3",
+  //   "assets/models/couch.wt3",
     // "assets/models/officechair.wt3",
     // "assets/models/table.wt3",
     // "assets/models/trainer.wt3"
@@ -58,7 +58,7 @@ var World = {
           action: "get_model_uri"
       });
 
-      World.loadExistingInstantTarget();
+    //  World.loadExistingInstantTarget();
   },
 
   createOverlays: function createOverlaysFn() {
@@ -130,10 +130,12 @@ var World = {
       },
       onTrackingPlaneDragChanged: function onTrackingPlaneDragChangedFn(xPos, yPos) {
         World.updatePlaneDrag(xPos, yPos);
+
       },
       onTrackingPlaneDragEnded: function onTrackingPlaneDragEndedFn(xPos, yPos) {
         World.updatePlaneDrag(xPos, yPos);
         World.initialDrag = false;
+
       },
       onError: World.onError
     });
@@ -214,6 +216,7 @@ var World = {
           oneFingerGestureAllowed = true;
         },
         onDragChanged: function(relativeX, relativeY, intersectionX, intersectionY) {
+
           if (oneFingerGestureAllowed) {
             /*
                 We recommend setting the entire translate property rather than its individual components
@@ -228,15 +231,18 @@ var World = {
         },
         onDragEnded: function(x, y) {
           /* React to the drag gesture ending. */
+                World.saveCurrentInstantTarget();
         },
         onRotationBegan: function(angleInDegrees) {
           /* React to the rotation gesture beginning. */
+                World.saveCurrentInstantTarget();
         },
         onRotationChanged: function(angleInDegrees) {
           this.rotate.z = rotationValues[modelIndex] - angleInDegrees;
         },
         onRotationEnded: function( /*angleInDegrees*/ ) {
-          rotationValues[modelIndex] = this.rotate.z
+          rotationValues[modelIndex] = this.rotate.z;
+                World.saveCurrentInstantTarget();
         },
         onScaleBegan: function(scale) {
           /* React to the scale gesture beginning. */
@@ -251,6 +257,7 @@ var World = {
         },
         onScaleEnded: function( /*scale*/ ) {
           scaleValues[modelIndex] = this.scale.x;
+          World.saveCurrentInstantTarget;
         },
         onError: World.onError
       });
@@ -258,6 +265,7 @@ console.log("model at the end of processing is : " + JSON.stringify(model));
       allCurrentModels.push(model);
       World.lastAddedModel = model;
       this.instantTrackable.drawables.addCamDrawable(model);
+
     }
   },
 
