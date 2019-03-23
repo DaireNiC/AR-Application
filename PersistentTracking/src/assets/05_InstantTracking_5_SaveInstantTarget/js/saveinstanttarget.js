@@ -1,3 +1,18 @@
+// Firebase App is always required and must be first
+
+ var config = {    apiKey: "AIzaSyBin5K65PzlW0X_HnVsmcYmJHCaiMyqC80",
+     authDomain: "architect-61cc8.firebaseapp.com",
+     databaseURL: "https://architect-61cc8.firebaseio.com",
+     projectId: "architect-61cc8",
+     storageBucket: "architect-61cc8.appspot.com",
+     messagingSenderId: "285211879252"
+ };
+
+ firebase.initializeApp(config);
+
+ // get session key
+ // listen for firebase updates
+ //var  ref = firebase.database().ref('/ARSessions/');
 var defaultScaleValue = 0.045;
 var defaultRotationValue = 0;
 
@@ -8,6 +23,9 @@ var allCurrentModels = [];
 
 var oneFingerGestureAllowed = false;
 
+//firebase results
+ var dbres = {};
+
 /*
     This global callback can be utilized to react on the transition from and to 2 finger gestures; specifically, we
     disallow the drag gesture in this case to ensure an intuitive experience.
@@ -15,6 +33,7 @@ var oneFingerGestureAllowed = false;
 AR.context.on2FingerGestureStarted = function() {
   oneFingerGestureAllowed = false;
 };
+
 
 var World = {
 
@@ -45,9 +64,34 @@ var World = {
     this.showUserInstructions("Running without platform assisted tracking (ARKit or ARCore).");
 
     World.createOverlays();
-    //  World.setupModel();
+    World.setupDBListener();
 
   },
+
+
+  setupDBListener: function setupDBListenerFn() {
+    // // downloads the model used in AR scene selected from DB
+    console.log("NEW: getting session key... ")
+      AR.platform.sendJSONObject({
+          action: "get_session_key"
+      });
+  },
+
+
+  // /* Called from platform specific part of the sample. */
+  setupDBKey: function setupDBKeyFn(key) {
+    console.log("NEW:in the setupDBKey --> " + key);
+    // set up listener to db
+     ref = firebase.database().ref('/ARSessions/' + key);
+
+    // getting the latest data from the db
+    ref.on('value', snapshot => {
+      dbres = snapshot.val();
+      console.log("NEW VAL");
+      World.loadExistingInstantTarget();
+    });
+  },
+
 
 
 
@@ -412,6 +456,10 @@ console.log("model at the end of processing is : " + JSON.stringify(model));
   showUserInstructions: function showUserInstructionsFn(message) {
     document.getElementById('loadingMessage').innerHTML = message;
   }
+
+
 };
+
+
 
 World.init();

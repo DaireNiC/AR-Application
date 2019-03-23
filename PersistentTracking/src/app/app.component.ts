@@ -18,6 +18,7 @@ declare let cordova: any;
 export class MyApp {
   rootPage: any = TabsPage;
 
+
   sessionKey = '';
   dbResult = [];
   ref = firebase.database().ref('/ARSessions/');
@@ -137,16 +138,17 @@ export class MyApp {
               this.ref.on('value', snapshot => {
                 dbres = snapshot.val();
               });
-              console.log("key is! --> " + key);
-                console.log("global key is! --> " +  this.global.sessionKey);
+              // console.log("key is! --> " + key);
+              //   console.log("global key is! --> " +  this.global.sessionKey);
+              //
+              // //REsult loaded from the DB
+              // console.log(" ENTIRE RESULT from  DB: " + JSON.stringify(dbres));
+              //
+              // // display the result for this session from db
+              // console.log(" SESSION RESULT from DB: " + JSON.stringify(dbres[key]));
+              //
 
-              //REsult loaded from the DB
-              console.log(" ENTIRE RESULT from  DB: " + JSON.stringify(dbres));
-
-              // display the result for this session from db
-              console.log(" SESSION RESULT from DB: " + JSON.stringify(dbres[key]));
-
-
+              //
 
               // write the model locally
               // get ref to download url
@@ -203,6 +205,14 @@ export class MyApp {
               WikitudePlugin.callJavaScript("World.loadModelFromUrl(\"" + cordova.file.dataDirectory + "model.wt3" +  "\");");
 
               break;
+              case "get_session_key":
+                console.log("in get_session_key method in app component");
+                console.log(this.global.sessionKey);
+                // this an example of how to call a function in the Wikitude SDK (Ionic2 app --> Wikitude SDK)
+          //      WikitudePlugin.callJavaScript("World.testFunction('Screenshot saved at: " + absoluteFilePath + "');");
+                WikitudePlugin.callJavaScript("World.setupDBKey(\"" + this.global.sessionKey + "\");");
+
+                break;
             default:
               console.warn("action not handled => ", obj);
 
