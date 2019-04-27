@@ -1,7 +1,0 @@
-{
-  "name": "modelUpload",
-  "integrations": {
-    "cordova": {}
-  },
-  "type": "ionic-angular"
-}

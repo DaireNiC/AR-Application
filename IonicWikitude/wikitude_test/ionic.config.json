@@ -1,7 +1,0 @@
-{
-  "name": "wikitude_test",
-  "integrations": {
-    "cordova": {}
-  },
-  "type": "ionic-angular"
-}
