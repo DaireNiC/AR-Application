@@ -1,0 +1,32 @@
+The general goal of this project was to evaluate and establish the current tools available for creating cross-platform, multi-user augmented reality mobile applications. More precisely, the project’s objectives can be described as follows:
+\begin{itemize}
+    \item Evaluate and establish the current tools available for creating cross-platform multi-user augmented reality mobile applications.
+     \item Implement shared augmented reality.
+    \item Build a full stack system for use in architecture, featuring shared augmented reality technology. 
+
+\end{itemize}
+\section{Evaluation of Objectives}
+The following section outlines how the objectives described above were implemented in the completed system.
+
+\begin{itemize}
+    \item \textit{Evaluate and establish the current tools available for creating cross-platform multi-user augmented reality mobile applications}. During the research phase of the project, SDKs known to have the functionality required to facilitate shared AR were investigated. Each of the selected SDKs were thoroughly reviewed. Relevant literature pertaining to the SDK was gathered and examined. Additionally, sample applications were created to accurately evaluate the advantages and limitations of each SDK. 
+    
+    \item \textit{Implement Shared Augmented Reality}. Shared augmented reality was successfully implemented in this system using the Wikitude SDK. Multiple users can share and interact with architectural models in a synchronized augmented space. While this initially proved a difficult task as Wikitude does not provide complete support for this functionality, it was successfully implemented in the mobile application.
+    
+    \item \textit{Build a full stack system for use in architecture, featuring shared augmented reality technology}. The final system created successfully achieves this objective. Architectural models can be interacted with using the mobile application developed. The application features a UI, cross-platform middle-ware and Firebase as a back-end. In addition to this, extra functionality was added to the application. A web application was added during the development phase to facilitate the management of AR assets within the mobile application. This feature was included as it serves to illustrate how the mobile application’s data can be managed in production environment. Additionally, Wikitude's Scene detection and recognition features were implemented. The reason for their addition was to add further value to the application’s use in architecture. Viewing how an architectural model superimposed on the area of its intended development is significantly useful for both architects and their clients. 
+    
+\end{itemize}
+
+\section{Opportunities for Improvement}
+While the proposed objectives for this project were achieved, there are, undoubtedly, areas in which the overall system can be improved upon.
+
+\subsection{Testing}
+Although basic tests usability tests were conducted on the system, the application lacks sufficient testing. To ensure a more robust mobile application, unit testing using Karma and Jasmine would ideally be employed. Furthermore, extracting quantifiable metrics also proved challenging while testing the system. Given the nature of augmented reality technology, it proved difficult to source a means of quantitive testing. 
+
+\subsection{Authentication \& Security}
+The mobile application and web application lack functionality for user authentication. While user authentication was never in the scope of this project, it is a critical feature needed to make the system production-ready.
+
+\subsection{Mobile Application Crashes}
+ A period of testing revealed that occasionally, the mobile application is prone to crashing. In an attempt to resolve this issue, time was spent utilising debugging tools and investigating logs to identify the source issue. Unfortunately, the issue remains unresolved. Given the limited time scale, and while also in keeping with the spirit of the Agile methodology, it proved more effective to continue with the development of features on the project’s critical path as the bug was not deemed severe.
+
+

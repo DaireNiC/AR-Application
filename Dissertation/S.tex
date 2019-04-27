@@ -1,0 +1,118 @@
+\documentclass{report}
+\usepackage[utf8]{inputenc}
+\usepackage{cite}
+\usepackage[english]{babel}
+ \usepackage{xcolor}
+\usepackage{minted}
+\usepackage{graphicx}
+\usepackage{dirtytalk}
+\usepackage{float}
+\usepackage{appendix}
+\usepackage{tikz}
+\usepackage{caption}
+\usepackage{gensymb}
+\usepackage{lmodern}
+\usepackage{multirow}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{adjustbox}
+\usepackage{upquote}
+\usepackage{amsmath}
+\usepackage{titlesec}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usetikzlibrary{mindmap,shadows, shapes, arrows, positioning}
+
+
+
+
+%% Change these:
+\newcommand{\projecttitle}{ An Exploration of Shared Augmented Reality and its Application in Architecture }
+\newcommand{\projectauthor}{Daire Ní Chatháin}
+\newcommand{\projectadvisor}{Dr. Brian McGinley}
+\newcommand{\projectprogramme}{B.Sc.(Hons) in Software Development}
+\newcommand{\projectdate}{\today}
+%% End of things to change.
+
+
+
+\tikzstyle{rect} = [rectangle, fill=blue!50, text width=4.5em, text centered, minimum height=4em, rounded corners]
+\tikzstyle{line} = [draw, ->, very thick]
+\tikzstyle{oval} = [ellipse, fill=green!50, text width=5em, text centered]
+
+\newcolumntype{x}[1]{>{\centering\arraybackslash\hspace{0pt}}p{#1}}
+
+
+\begin{document}
+  \begin{titlepage}
+    \begin{minipage}[t][4cm]{\textwidth}
+      \centering
+      \rule{\linewidth}{0.5mm} \\[0.4cm]
+      { \LARGE \bfseries \projecttitle \\[0.4cm] }
+      \rule{\linewidth}{0.5mm} \\[0.8cm]
+    \end{minipage}
+    
+    \begin{minipage}[t][6.5cm]{\textwidth}
+      \centering
+      \textbf{\projectauthor}\\[0.4cm]
+      \projectprogramme
+    \end{minipage}
+  
+    \begin{minipage}[t][1cm]{\textwidth}
+      \centering
+      \textsc{\projectdate}
+    \end{minipage}
+      
+    \begin{minipage}[t][3cm]{\textwidth}
+      \centering
+      \textbf{Final Year Project}\\[0.3cm]
+      Advised by: \projectadvisor \\[0.1cm]
+      Department of Computer Science and Applied Physics\\
+      Galway-Mayo Institute of Technology (GMIT)
+    \end{minipage}
+
+    \begin{center}    
+      \includegraphics[scale=0.7]{./images/gmit.png}
+    \end{center}
+  \end{titlepage}
+  \setcounter{page}{1}
+\
+\tableofcontents
+\begin{abstract}
+
+Shared augmented reality, is an emerging technology showing promising value in a wide range of disciplines. This project seeks to examine shared augmented reality through the lens of its value in the field of architecture. 
+In the first section of this dissertation, an investigation into the current tools available for the creation of shared augmented reality experiences is conducted. An evaluation of these tools is completed highlighting how each tool can be applied to implement a multi-user augmented reality experience. Following this, a selection of technologies are applied to create a cross-platform mobile application featuring shared augmented reality functionality, for use in architecture. To conclude, the shared-augmented reality system is presented and evaluated. 
+   
+\end{abstract}
+
+ \chapter{Introduction}
+ \input{introduction.tex}
+
+%%%%%%%%%%%%%%%%
+% Chapter 1
+%%%%%%%%%%%%%%%%
+\chapter{Background}
+\input{background.tex}
+
+\chapter{Methodology}
+\input{methodology.tex}
+
+
+\chapter{System Design}
+\input{system_design.tex}
+
+\chapter{System Evaluation}
+\input{system_evaluation.tex}
+
+\chapter{Conclusion}
+\input{conclusion.tex}
+
+\bibliographystyle{plain}
+\bibliography{M335}
+
+\appendix
+\chapter{}
+Github Repository: https://github.com/DaireNiC/AR-Application
+
+
+\end{document}
